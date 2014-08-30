@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require "rack"
+require_relative '../lib/chaplin'
+
+chaplin_server = Chaplin::Server.new('pace-api.herokuapp.com')
+
+Rack::Server.start(app: chaplin_server, Port: 8081)
