@@ -1,7 +1,6 @@
 {
-  "layout": {"GET": {"/profile": "layout.html"}},
   "routes": [
-    {"GET": {"/": "inbox.html"  }},
-    {"POST": {"/message": "message_sent.html"}}
+    { "GET /about": [ "about.html", {} ]},
+    { "GET /profile": ["profile.html", { user: "GET /user.json" } ]}
   ]
 }

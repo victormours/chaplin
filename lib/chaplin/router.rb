@@ -1,6 +1,9 @@
 require 'json'
 
 module Chaplin
+
+  Route = Struct.new(:method, :path, :template, :data)
+
   class Router
 
     def initialize(routes_filename)
@@ -8,26 +11,32 @@ module Chaplin
     end
 
     def template_for(request)
-      route = route(request)
-      route && route.values.first
+      route = route_for(request.request_method,
+                         request.path)
+      route.template
     end
 
     private
 
-    def route(request)
-      routes_for_method(request.request_method).find do |route|
-        route.keys.first == request.path
+    def route_for(http_method, path)
+      routes.find do |route|
+        route.method == http_method &&
+          route.path == path
       end
     end
 
-    def routes_for_method(http_verb)
-      routes.map do |route|
-        route[http_verb]
-      end.compact
+    def routes
+      @routes ||= build_routes
     end
 
-    def routes
-      @routes ||= JSON.load(File.open(@routes_filename))['routes']
+    def build_routes
+      routes_json = JSON.load(File.open(@routes_filename))['routes']
+      routes_json.map do |route|
+        method_and_path = route.first.split(' ')
+        method = method_and_path.first
+        path = method_and_path.last
+        Route.new(method, path, route[1], route.last)
+      end
     end
 
   end
