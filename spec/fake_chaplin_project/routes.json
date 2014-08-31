@@ -1,6 +1,6 @@
 {
   "routes": [
-    { "GET /about": [ "about.html", {} ]},
-    { "GET /profile": ["profile.html", { user: "GET /user.json" } ]}
+    [ "GET", "/about",  "about.html", {} ],
+    [ "GET", "/profile", "profile.html", { "user": ["GET", "/user.json"] } ]
   ]
 }
