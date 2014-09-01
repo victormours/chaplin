@@ -1,6 +1,10 @@
 require 'json'
+require_relative 'endpoint'
 
 module Chaplin
+
+  Route = Struct.new(:method, :path, :template, :data)
+
   class Router
 
     def initialize(routes_filename)
@@ -8,26 +12,52 @@ module Chaplin
     end
 
     def template_for(request)
-      route = route(request)
-      route && route.values.first
+      route_for(request) && route_for(request).template
+    end
+
+    def data_for(request)
+      {}.tap do |data|
+        route_for(request).data.each do |data_key, endpoint|
+          data[data_key] = Endpoint.new(endpoint.first, endpoint.last)
+        end
+      end
+    end
+
+    def layout_name
+      layout && layout.first
+    end
+
+    def layout_data
+      return unless layout
+
+      {}.tap do |data|
+        layout.last.each do |data_key, endpoint|
+          data[data_key] = Endpoint.new(endpoint.first, endpoint.last)
+        end
+      end
     end
 
     private
 
-    def route(request)
-      routes_for_method(request.request_method).find do |route|
-        route.keys.first == request.path
+    def route_for(request)
+      routes.find do |route|
+        route.method == request.request_method &&
+          route.path == request.path
       end
     end
 
-    def routes_for_method(http_verb)
-      routes.map do |route|
-        route[http_verb]
-      end.compact
+    def routes
+      @routes ||= routes_json.map do |route|
+        Route.new(route[0], route[1], route[2], route[3])
+      end
     end
 
-    def routes
-      @routes ||= JSON.load(File.open(@routes_filename))['routes']
+    def routes_json
+      @routes_json ||= JSON.load(File.open(@routes_filename))['routes']
+    end
+
+    def layout
+      @layout ||= JSON.load(File.open(@routes_filename))['layout']
     end
 
   end

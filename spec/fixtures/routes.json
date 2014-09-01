@@ -1,4 +1,5 @@
 {
+  "layout": ["layout.html", {"user": ["GET", "/user.json"]} ],
   "routes": [
     [ "GET", "/about",  "about.html", {} ],
     [ "GET", "/profile", "profile.html", { "user": ["GET", "/user.json"] } ]

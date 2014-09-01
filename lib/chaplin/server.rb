@@ -12,31 +12,22 @@ module Chaplin
       request = Rack::Request.new(rack_env)
       template_name = @router.template_for(request)
       if template_name
-        api_response = @forwarder.forward(request)
-        api_data = JSON.parse(api_response.body)
+        api_data = @forwarder.forward(request, @router.data_for(request))
+        response_body = @renderer.render(api_data, template_name)
 
-        layout_response = @forwarder.forward_layout_request(request)
-        layout_data = JSON.parse(layout_response.body)
-
-        response_body = @renderer.render(api_data, template_name, layout_data)
+        if @router.layout_name
+          layout_api_data = @forwarder.forward(request, @router.layout_data)
+          complete_data = layout_api_data.merge({ content: response_body })
+          response_body = @renderer.render(complete_data, @router.layout_name)
+        end
 
         status = 200
-        headers = rack_formatted_headers(api_response)
+        headers = @forwarder.cookie_header || {}
         body = [response_body]
 
         [status, headers, body]
       else
         @file_server.call(rack_env)
-      end
-    end
-
-    private
-
-    def rack_formatted_headers(response)
-      if response.header['set-cookie']
-        {'set-cookie' => response.header['set-cookie']}
-      else
-        {}
       end
     end
 
