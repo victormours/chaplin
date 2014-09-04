@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/victormours/mustache.git
+  revision: 00037bedbc771fbd0b4baf74dfe5e3c2a76df8ef
+  branch: no-section-for-empty-hash
+  specs:
+    mustache (0.99.6)
+
 PATH
   remote: .
   specs:
@@ -12,7 +19,6 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     method_source (0.8.2)
-    mustache (0.99.6)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -37,4 +43,5 @@ PLATFORMS
 
 DEPENDENCIES
   chaplin!
+  mustache!
   rspec
