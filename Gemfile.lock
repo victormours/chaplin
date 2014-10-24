@@ -47,6 +47,7 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
+    rake (10.3.2)
     relish (0.7)
       archive-tar-minitar (>= 0.5.2)
       json (>= 1.4.6)
@@ -82,5 +83,6 @@ DEPENDENCIES
   cucumber
   mustache!
   pry
+  rake
   relish
   rspec
