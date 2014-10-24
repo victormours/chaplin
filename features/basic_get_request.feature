@@ -16,7 +16,7 @@ Feature: Basic templating
     """
     And I have an api running that responds to GET /user with the following JSON
     """
-    {\"name\": \"Bob\"}
+    {"name": "Bob"}
     """
     And I start a Chaplin server
     When I send the request GET /profile
