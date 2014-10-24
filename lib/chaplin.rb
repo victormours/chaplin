@@ -10,8 +10,9 @@ class Chaplin
 
   # returns a Rack application
   def server
+    Server.setup(@project_path)
     load_server
-    Rack::File.new(@project_path + '/public')
+    templates_server
   end
 
   private
@@ -20,12 +21,12 @@ class Chaplin
     router.load_routes
 
     router.routes.each do |route|
-      templates_server.add_route(route)
+      Server.add_route(route)
     end
   end
 
   def router
-    @router ||= Router.new("#{@project_path}/routes.json")
+    @router ||= Router.new(@project_path)
   end
 
   def templates_server

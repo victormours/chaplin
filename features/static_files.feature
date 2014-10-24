@@ -6,6 +6,10 @@ Feature: Serving static files
     """
     Hello Chaplin!
     """
+    And I have the following routes.json file
+    """
+    { "routes": [] }
+    """
     And I start a Chaplin server
     When I send the request GET /hello.txt
     Then I should get the following response

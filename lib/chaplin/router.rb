@@ -6,8 +6,9 @@ class Chaplin
 
   class Router
 
-    def initialize(routes_filename)
-      @routes_filename = routes_filename
+    def initialize(project_path)
+      @project_path = project_path
+      @routes_filename = project_path + "/routes.json"
       @routes = []
     end
 
@@ -23,7 +24,7 @@ class Chaplin
 
     def add_route(route)
       endpoint = Endpoint.new(route[0].downcase.to_sym, route[1])
-      page = Page.new(route[2], route[3])
+      page = Page.new(@project_path + '/templates/' + route[2], route[3])
       @routes << Route.new(endpoint, page)
     end
 

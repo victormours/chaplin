@@ -2,7 +2,7 @@ Feature: Basic templating
   Chaplin sends a request to an API and fills a template.
 
   Scenario: Sending a request for a templated file
-    Given I have the following template/user_info.html file
+    Given I have the following templates/user_info.html file
     """
     Your name is {{name}}
     """
