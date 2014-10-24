@@ -1,5 +1,5 @@
 After do
-  `rm -r tmp/*`
+  `rm -rf tmp/*`
   @chaplin_server.stop
 
   if @api_pid
