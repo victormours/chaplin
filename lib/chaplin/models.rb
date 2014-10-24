@@ -34,7 +34,26 @@ class Page < Struct.new(:template_path, :data)
   def render(request)
     page = Mustache.new
     page.template_file = @template_path
-    page.render(@data.render(request))
+    page.render(rendered_data(request)
+  end
+
+  private
+
+  def rendered_data(request)
+    @data.each_with_object do |(key, value), rendered_data|
+      rendered_data[key] = value.render(request)
+    end
+  end
+end
+
+class Chaplin
+
+  def initialize(routes_filename)
+    @routes_filename = routes_filename
+  end
+
+  # returns a Rack application
+  def server
   end
 end
 
@@ -42,8 +61,21 @@ Route = Struct.new(:endpoint, :page)
 
 class Router
 
-  # Returns a Grape api
-  def self.load_routes(routes_filename)
+  def initialize(routes_filename)
+    @routes_filename = routes_filename
+  end
+
+  def routes
+  end
+
+  private
+
+end
+
+class Server
+
+  def create_endpoint(route)
   end
 end
+
 
