@@ -1,0 +1,1 @@
+Request = Struct.new(:params)

@@ -1,6 +1,6 @@
 require 'json'
-require_relative 'models'
 
+require_relative 'route'
 require_relative 'endpoint'
 require_relative 'api_endpoint'
 require_relative 'page'
@@ -33,8 +33,6 @@ class Chaplin
 
     def data_hash(json_hash)
       json_hash.each_with_object({}) do |(key, value), data_hash|
-        puts value.inspect
-        puts ApiEndpoint.new(value[0].downcase.to_sym, value[1]).inspect
         data_hash[key] = ApiEndpoint.new(value[0].downcase.to_sym, value[1])
       end
     end
