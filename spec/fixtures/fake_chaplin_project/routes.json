@@ -1,6 +1,0 @@
-{
-  "routes": [
-    [ "GET", "/no_requests",  "no_requests.html", {} ],
-    [ "GET", "/profile", "profile.html", { "user": ["GET", "/user.json"] } ]
-  ]
-}
