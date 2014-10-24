@@ -1,4 +1,4 @@
 After do
-  # `rm -r tmp/*`
+  `rm -r tmp/*`
   @chaplin_server.stop
 end

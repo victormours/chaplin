@@ -48,23 +48,3 @@ end
 
 Route = Struct.new(:endpoint, :page)
 
-class Router
-
-  def initialize(routes_filename)
-    @routes_filename = routes_filename
-  end
-
-  def routes
-  end
-
-  private
-
-end
-
-class Server
-
-  def create_endpoint(route)
-  end
-end
-
-
