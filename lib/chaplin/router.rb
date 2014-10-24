@@ -1,5 +1,8 @@
 require 'json'
 require_relative 'models'
+
+require_relative 'endpoint'
+require_relative 'api_endpoint'
 require_relative 'page'
 
 class Chaplin
@@ -24,8 +27,16 @@ class Chaplin
 
     def add_route(route)
       endpoint = Endpoint.new(route[0].downcase.to_sym, route[1])
-      page = Page.new(@project_path + '/templates/' + route[2], route[3])
+      page = Page.new(@project_path + '/templates/' + route[2], data_hash(route[3]))
       @routes << Route.new(endpoint, page)
+    end
+
+    def data_hash(json_hash)
+      json_hash.each_with_object({}) do |(key, value), data_hash|
+        puts value.inspect
+        puts ApiEndpoint.new(value[0].downcase.to_sym, value[1]).inspect
+        data_hash[key] = ApiEndpoint.new(value[0].downcase.to_sym, value[1])
+      end
     end
 
     def routes_json

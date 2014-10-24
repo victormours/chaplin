@@ -5,8 +5,8 @@ class Chaplin
   class Page < Struct.new(:template_path, :data)
 
     def embed_in_layout(layout_template_path, layout_data)
-      @data = { content: Page.new(@template_path, @data) }.merge(layout_data)
-      @template_path = layout_template_path
+      data = { content: Page.new(template_path, data) }.merge(layout_data)
+      template_path = layout_template_path
     end
 
     def render(request)
@@ -18,10 +18,9 @@ class Chaplin
     private
 
     def rendered_data(request)
-      # @data.each_with_object do |(key, value), rendered_data|
-      #   rendered_data[key] = value.render(request)
-      # end
-      {}
+      data.each_with_object({}) do |(key, value), rendered_data|
+        rendered_data[key] = value.render(request)
+      end
     end
   end
 end

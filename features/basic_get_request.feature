@@ -4,7 +4,7 @@ Feature: Basic templating
   Scenario: Sending a request for a templated file
     Given I have the following templates/user_info.html file
     """
-    Your name is {{name}}
+    {{#user_data}}Your name is {{name}}{{/user_data}}
     """
     And I have the following routes.json file
     """
@@ -16,7 +16,7 @@ Feature: Basic templating
     """
     And I have an api running that responds to GET /user with the following JSON
     """
-    {"name": "Bob"}
+    {\"name\": \"Bob\"}
     """
     And I start a Chaplin server
     When I send the request GET /profile

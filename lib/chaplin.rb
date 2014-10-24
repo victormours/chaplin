@@ -10,6 +10,7 @@ class Chaplin
 
   # returns a Rack application
   def server
+    ApiEndpoint.configure("http://localhost:8080")
     Server.setup(@project_path)
     load_server
     templates_server
