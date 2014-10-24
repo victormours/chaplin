@@ -1,10 +1,11 @@
 require 'childprocess'
 
 Given(/^I start a Chaplin server$/) do
-  @process = ChildProcess.build("./bin/chaplin", "tmp/chaplin_project")
-  @process.start
+  @chaplin_server = ChildProcess.build("./bin/chaplin", "tmp/chaplin_project")
+  @chaplin_server.start
   sleep 1
 end
+
 
 When(/^I send the request GET (.*)$/) do |path|
   @response = `curl -s http://localhost:8081/#{path}`

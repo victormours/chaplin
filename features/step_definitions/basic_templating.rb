@@ -1,4 +1,4 @@
-Given(/^My project has a ([^\/]*)\/(.*) file with the following content$/) do |directory, filename, content|
+Given(/^I have the following (.*\/)?(.*) file$/) do |directory, filename, content|
   `mkdir -p tmp/chaplin_project/#{directory}`
   `echo #{content} > tmp/chaplin_project/#{directory}/#{filename}`
 end

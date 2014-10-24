@@ -1,4 +1,4 @@
 After do
   # `rm -r tmp/*`
-  @process.stop
+  @chaplin_server.stop
 end

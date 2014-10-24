@@ -2,7 +2,10 @@ Feature: Basic templating
   Chaplin sends a request to an API and fills a template.
 
   Scenario: Sending a request for a templated file
-    Given My project has a user_info.html file in the templates directory
+    Given I have the following template/user_info.html file
+    """
+    Your name is {{name}}
+    """
     And I have the following routes.json file
     """
     {
@@ -11,7 +14,13 @@ Feature: Basic templating
       ]
     }
     """
-    And I have an api running that responds to GET /user
+    And I have an api running that responds to GET /user with the following JSON
+    """
+    {"name": "Bob"}
+    """
     And I start a Chaplin server
     When I send the request GET /profile
-    Then I should get the user profile with the data from the api as a response
+    Then I should get the following response
+    """
+    Your name is Bob
+    """
