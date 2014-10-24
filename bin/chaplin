@@ -3,6 +3,6 @@ require "rack"
 require_relative '../lib/chaplin'
 
 project_directory = ARGV[0]
-chaplin_server = Chaplin.new(project_directory)
+chaplin_server = Chaplin.new(project_directory).server
 
 Rack::Server.start(app: chaplin_server, Port: 8081)
