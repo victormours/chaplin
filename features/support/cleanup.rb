@@ -1,4 +1,4 @@
 After do
-  `rm -r tmp/*`
+  # `rm -r tmp/*`
   @process.stop
 end
