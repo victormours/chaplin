@@ -1,4 +1,9 @@
+require 'json'
+require_relative 'models'
+require_relative 'page'
+
 class Chaplin
+
   class Router
 
     def initialize(routes_filename)
@@ -6,18 +11,24 @@ class Chaplin
       @routes = []
     end
 
-    def load_routes
-      puts "Found routes"
-      puts routes_json
-    end
+    attr_accessor :routes
 
-    def routes
+    def load_routes
+      routes_json.each do |route|
+        add_route(route)
+      end
     end
 
     private
 
+    def add_route(route)
+      endpoint = Endpoint.new(route[0].downcase.to_sym, route[1])
+      page = Page.new(route[2], route[3])
+      @routes << Route.new(endpoint, page)
+    end
+
     def routes_json
-      @routes_json = @json_data['routes']
+      @routes_json = json_data['routes']
     end
 
     def json_data

@@ -1,7 +1,7 @@
 class Chaplin
   class Server
 
-    def create_endpoint(route)
+    def add_route(route)
     end
   end
 end
