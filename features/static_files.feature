@@ -3,5 +3,6 @@ Feature: Serving static files
 
   Scenario: Sending a request for a css file
     Given My project has a hello.txt file in the public directory
+    And I start a Chaplin server
     When I send the request GET /hello.txt
     Then I should get the file as a response

@@ -46,17 +46,6 @@ class Page < Struct.new(:template_path, :data)
   end
 end
 
-class Chaplin
-
-  def initialize(routes_filename)
-    @routes_filename = routes_filename
-  end
-
-  # returns a Rack application
-  def server
-  end
-end
-
 Route = Struct.new(:endpoint, :page)
 
 class Router
