@@ -8,7 +8,7 @@ Feature: Serving static files
     """
     And I have the following routes.json file
     """
-    { "routes": [] }
+    { \"routes\": [] }
     """
     And I start a Chaplin server
     When I send the request GET /hello.txt
