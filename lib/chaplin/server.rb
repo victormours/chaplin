@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require_relative 'request'
 
 class Chaplin
   class Server < Sinatra::Base
@@ -7,12 +8,12 @@ class Chaplin
       set :public_folder, project_path + '/public'
     end
 
-
     def self.add_route(route)
       endpoint = route.endpoint
 
       send(endpoint.http_method, endpoint.path) do
-        route.page.render(nil)
+        request = Request.new(params)
+        route.page.render(request)
       end
     end
   end

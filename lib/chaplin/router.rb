@@ -32,9 +32,15 @@ class Chaplin
     end
 
     def data_hash(json_hash)
-      json_hash.each_with_object({}) do |(key, value), data_hash|
-        data_hash[key] = ApiEndpoint.new(value[0].downcase.to_sym, value[1])
+      json_hash.each_with_object({}) do |(key, json_endpoint), data_hash|
+        data_hash[key] = api_endpoint(json_endpoint)
       end
+    end
+
+    def api_endpoint(json_endpoint)
+      ApiEndpoint.new(json_endpoint[0].downcase.to_sym,
+                      json_endpoint[1],
+                      json_endpoint[2] == "forward_params")
     end
 
     def routes_json
