@@ -12,7 +12,7 @@ class Chaplin
     def render(request)
       page = Mustache.new
       page.template_file = template_path
-      page.render(rendered_data(request))
+      page.render(rendered_data(request).merge({params: request.params}))
     end
 
     private
