@@ -5,7 +5,7 @@ Feature: Configuration
     Given I have the following chaplin_config.json file
     """
     {
-      "api_url": "localhost:1234"
+      "api_url": "http://localhost:1234"
     }
     """
     Then Chaplin connects to the api on port 1234

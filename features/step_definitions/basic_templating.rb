@@ -8,6 +8,9 @@ end
 Given(/^I have an api running that responds to GET (.*) with the following JSON$/) do |path, json_data|
   steps %Q{
     Given I have an api running on port 8080 that responds to GET /user with the following JSON
+    """
+    #{json_data}
+    """
   }
 end
 

@@ -1,3 +1,4 @@
+require_relative 'chaplin/config'
 require_relative 'chaplin/router'
 require_relative 'chaplin/server'
 
@@ -6,32 +7,29 @@ class Chaplin
 
   def initialize(project_path)
     @project_path = project_path
+    @config = Config.new(@project_path)
+    @router = Router.new(@project_path)
   end
 
   # returns a Rack application
   def server
-    ApiEndpoint.configure("http://localhost:8080")
+    puts "LOL"
+    puts "Pointing to #{@config.api_url}"
+    ApiEndpoint.configure(@config.api_url || "http://localhost:8080")
     Server.setup(@project_path)
     load_server
-    templates_server
+    Server.new
   end
 
   private
 
   def load_server
-    router.load_routes
+    @router.load_routes
 
-    router.routes.each do |route|
+    @router.routes.each do |route|
       Server.add_route(route)
     end
   end
 
-  def router
-    @router ||= Router.new(@project_path)
-  end
-
-  def templates_server
-    @templates_server ||= Server.new
-  end
 end
 
