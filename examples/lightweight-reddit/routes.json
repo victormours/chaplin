@@ -1,0 +1,6 @@
+{
+  "routes": [
+    ["GET", "/", "front_page.html", { "listings": ["GET", "/hot.json"] }]
+  ]
+}
+

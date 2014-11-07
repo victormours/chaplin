@@ -1,0 +1,6 @@
+{
+  "routes": [
+    ["GET", "/", "repo.html", { "repos": ["GET", "/repositories"] }]
+  ]
+}
+
