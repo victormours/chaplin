@@ -5,8 +5,6 @@ Feature: Forwarding request parameters
     Given I have the following API running
     """
     get "/search" do
-      puts "Request received by api"
-      puts params
       { title: "City Lights", year: 1931 }.to_json if params == {"title" => "City Lights"}
     end
     """

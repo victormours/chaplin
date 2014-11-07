@@ -27,7 +27,10 @@ class Chaplin
 
     def add_route(route)
       endpoint = Endpoint.new(route[0].downcase.to_sym, route[1])
-      page = Page.new(@project_path + '/templates/' + route[2], data_hash(route[3]))
+      page = Page.new(templates_path + route[2], data_hash(route[3]))
+      if layout_name
+        page.embed_in_layout(templates_path + layout_name, {})
+      end
       @routes << Route.new(endpoint, page)
     end
 
@@ -43,8 +46,16 @@ class Chaplin
                       json_endpoint[2] == "forward_params")
     end
 
+    def templates_path
+      @project_path + '/templates/'
+    end
+
+    def layout_name
+      @layout_name ||= json_data['layout']
+    end
+
     def routes_json
-      @routes_json = json_data['routes']
+      @routes_json ||= json_data['routes']
     end
 
     def json_data
