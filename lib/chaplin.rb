@@ -13,9 +13,7 @@ class Chaplin
 
   # returns a Rack application
   def server
-    puts "LOL"
-    puts "Pointing to #{@config.api_url}"
-    ApiEndpoint.configure(@config.api_url || "http://localhost:8080")
+    ApiEndpoint.configure(@config.api_url)
     Server.setup(@project_path)
     load_server
     Server.new

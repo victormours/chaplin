@@ -1,6 +1,9 @@
+require 'json'
+
 class Chaplin
   class Config < Struct.new(:project_path)
 
+    DEFAULT_API_URL = "http://localhost:8080"
 
     def initialize(project_path)
       @project_path = project_path
@@ -8,7 +11,7 @@ class Chaplin
     end
 
     def api_url
-      config['api_url']
+      config['api_url'] || DEFAULT_API_URL
     end
 
     private
