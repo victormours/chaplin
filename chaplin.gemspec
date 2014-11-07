@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "rack"
   gem.add_runtime_dependency "sinatra"
   gem.add_runtime_dependency "faraday"
+  gem.add_runtime_dependency "mustache"
 
   gem.add_development_dependency "pry"
   gem.add_development_dependency "rake"

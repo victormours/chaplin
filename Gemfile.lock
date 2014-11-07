@@ -10,6 +10,7 @@ PATH
   specs:
     chaplin (0.0.0)
       faraday
+      mustache
       rack
       sinatra
 
