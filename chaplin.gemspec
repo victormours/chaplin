@@ -10,8 +10,13 @@ Gem::Specification.new do |gem|
   gem.executables = ['chaplin']
 
   gem.add_runtime_dependency "rack"
-  gem.add_runtime_dependency "mustache"
-  gem.add_runtime_dependency "pry"
+  gem.add_runtime_dependency "sinatra"
+  gem.add_runtime_dependency "faraday"
 
+  gem.add_development_dependency "pry"
+  gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "cucumber"
+  gem.add_development_dependency "relish"
+  gem.add_development_dependency "childprocess"
 end

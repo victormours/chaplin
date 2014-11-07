@@ -2,6 +2,7 @@
 require "rack"
 require_relative '../lib/chaplin'
 
-chaplin_server = Chaplin::Server.new('pace-api.herokuapp.com')
+project_directory = ARGV[0]
+chaplin_server = Chaplin.new(project_directory).server
 
 Rack::Server.start(app: chaplin_server, Port: 8081)

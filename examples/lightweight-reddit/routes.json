@@ -1,0 +1,7 @@
+{
+  "routes": [
+    ["GET", "/", "front_page.html", { "listings": ["GET", "/hot.json"] }],
+    ["GET", "/new", "front_page.html", { "listings": ["GET", "/new.json"] }]
+  ]
+}
+

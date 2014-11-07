@@ -1,63 +1,54 @@
 require 'json'
+
+require_relative 'route'
 require_relative 'endpoint'
+require_relative 'api_endpoint'
+require_relative 'page'
 
-module Chaplin
-
-  Route = Struct.new(:method, :path, :template, :data)
+class Chaplin
 
   class Router
 
-    def initialize(routes_filename)
-      @routes_filename = routes_filename
+    def initialize(project_path)
+      @project_path = project_path
+      @routes_filename = project_path + "/routes.json"
+      @routes = []
     end
 
-    def template_for(request)
-      route_for(request) && route_for(request).template
-    end
+    attr_accessor :routes
 
-    def data_for(request)
-      {}.tap do |data|
-        route_for(request).data.each do |data_key, endpoint|
-          data[data_key] = Endpoint.new(endpoint.first, endpoint.last)
-        end
-      end
-    end
-
-    def layout_name
-      layout && layout.first
-    end
-
-    def layout_data
-      return unless layout
-
-      {}.tap do |data|
-        layout.last.each do |data_key, endpoint|
-          data[data_key] = Endpoint.new(endpoint.first, endpoint.last)
-        end
+    def load_routes
+      routes_json.each do |route|
+        add_route(route)
       end
     end
 
     private
 
-    def route_for(request)
-      routes.find do |route|
-        route.method == request.request_method &&
-          route.path == request.path
+    def add_route(route)
+      endpoint = Endpoint.new(route[0].downcase.to_sym, route[1])
+      page = Page.new(@project_path + '/templates/' + route[2], data_hash(route[3]))
+      @routes << Route.new(endpoint, page)
+    end
+
+    def data_hash(json_hash)
+      json_hash.each_with_object({}) do |(key, json_endpoint), data_hash|
+        data_hash[key] = api_endpoint(json_endpoint)
       end
     end
 
-    def routes
-      @routes ||= routes_json.map do |route|
-        Route.new(route[0], route[1], route[2], route[3])
-      end
+    def api_endpoint(json_endpoint)
+      ApiEndpoint.new(json_endpoint[0].downcase.to_sym,
+                      json_endpoint[1],
+                      json_endpoint[2] == "forward_params")
     end
 
     def routes_json
-      @routes_json ||= JSON.load(File.open(@routes_filename))['routes']
+      @routes_json = json_data['routes']
     end
 
-    def layout
-      @layout ||= JSON.load(File.open(@routes_filename))['layout']
+    def json_data
+      @json_data ||= JSON.load(File.open(@routes_filename))
     end
 
   end
