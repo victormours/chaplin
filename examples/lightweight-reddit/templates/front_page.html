@@ -1,7 +1,9 @@
 <h1>Lightweight Reddit</h1>
 <h2>A barebone front page of the internet</h2>
 
-<ul>
+<a href="/">front</a>
+<a href="/new">new</a>
+<ol>
 {{#listings.data.children}}
 {{#data}}
 <li>
@@ -10,8 +12,9 @@
     {{score}}
     <a href={{url}}>{{title}}</a>
   </p>
+  <p><a href="http://www.reddit.com/{{permalink}}">{{num_comments}} comments</a></p>
 </li>
 {{/data}}
 {{/listings.data.children}}
-</ul>
+</ol>
 
