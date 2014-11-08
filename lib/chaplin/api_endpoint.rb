@@ -1,4 +1,5 @@
 require 'faraday'
+require 'mustache'
 
 require_relative 'endpoint'
 
@@ -21,7 +22,11 @@ class Chaplin
 
     def api_response(request)
       params = forward_params && request.params
-      self.class.client.send(http_method, path, params)
+      self.class.client.send(http_method, parsed_path(request), params)
+    end
+
+    def parsed_path(request)
+      Mustache.render(path, request.params)
     end
   end
 end
