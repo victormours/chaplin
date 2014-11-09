@@ -19,7 +19,6 @@ class Chaplin
     end
 
     def render(request)
-      puts api_response(request).body
       JSON.parse(api_response(request).body)
     end
 
