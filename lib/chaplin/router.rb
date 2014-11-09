@@ -43,7 +43,7 @@ class Chaplin
     def api_endpoint(json_endpoint)
       ApiEndpoint.new(json_endpoint[0].downcase.to_sym,
                       json_endpoint[1],
-                      json_endpoint[2] == "forward_params")
+                      json_endpoint[2])
     end
 
     def templates_path
