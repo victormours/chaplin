@@ -6,8 +6,8 @@ require_relative 'endpoint'
 class Chaplin
   class ApiEndpoint < Struct.new(:http_method, :path, :params)
 
-    def initialize(http_method, path, params = {})
-      super(http_method, path, params)
+    def initialize(http_method, path, params )
+      super(http_method, path, params || {})
     end
 
     def self.configure(api_url)
