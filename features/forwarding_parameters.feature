@@ -40,7 +40,7 @@ Feature:  Parameters for api requests
     The movie City Lights came out in 1931.
     """
 
-  Scenario: Forwarding parameters for a GET request
+  Scenario: Using dynamic parameters
     And I have the following routes.json file
     """
     {
@@ -55,3 +55,4 @@ Feature:  Parameters for api requests
     """
     The movie City Lights came out in 1931.
     """
+

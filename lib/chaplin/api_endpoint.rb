@@ -33,8 +33,12 @@ class Chaplin
     end
 
     def rendered_params(request_params)
-      params.each_with_object({}) do |(key, value), rendered_params|
-        rendered_params[key] = Mustache.render(value, request_params)
+      if params.respond_to?(:each_with_object)
+        params.each_with_object({}) do |(key, value), rendered_params|
+          rendered_params[key] = Mustache.render(value, request_params)
+        end
+      else
+        Mustache.render(params, request_params)
       end
     end
 
