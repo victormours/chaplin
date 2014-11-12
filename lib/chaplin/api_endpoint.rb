@@ -19,7 +19,9 @@ class Chaplin
     end
 
     def render(request)
-      JSON.parse(api_response(request).body)
+      response_body = api_response(request).body
+      return nil if response_body == 'null'
+      JSON.parse(response_body)
     end
 
     private
