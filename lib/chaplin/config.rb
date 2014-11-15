@@ -14,6 +14,10 @@ class Chaplin
       config['api_url'] || DEFAULT_API_URL
     end
 
+    def default_headers
+      config['headers']
+    end
+
     private
 
     def config

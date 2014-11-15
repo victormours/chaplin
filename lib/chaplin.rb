@@ -13,7 +13,7 @@ class Chaplin
 
   # returns a Rack application
   def server
-    ApiEndpoint.configure(@config.api_url)
+    ApiEndpoint.configure(@config.api_url, @config.default_headers)
     Server.setup(@project_path)
     load_server
     Server.new

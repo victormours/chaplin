@@ -6,16 +6,13 @@ require_relative 'endpoint'
 class Chaplin
   class ApiEndpoint < Struct.new(:http_method, :path, :params)
 
-    def initialize(http_method, path, params )
+    def initialize(http_method, path, params)
       super(http_method, path, params || {})
     end
 
-    def self.configure(api_url)
+    def self.configure(api_url, default_headers)
       @@client = Faraday.new(api_url)
-    end
-
-    def self.client
-      @@client
+      @@default_headers = default_headers
     end
 
     def render(request)
@@ -27,9 +24,12 @@ class Chaplin
     private
 
     def api_response(request)
-      self.class.client.send(http_method,
-                             parsed_path(request),
-                             rendered_params(request.params))
+      @@client.send(
+        http_method,
+        parsed_path(request),
+        rendered_params(request.params),
+        @@default_headers
+      )
     end
 
     def rendered_params(request_params)
