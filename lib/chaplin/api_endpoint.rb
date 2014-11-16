@@ -33,7 +33,7 @@ class Chaplin
     end
 
     def api_request_params(chaplin_request_params)
-      if json_request?
+      if json_request? && [:post, :put].include?(http_method)
         rendered_params(chaplin_request_params).to_json
       else
         rendered_params(chaplin_request_params)
@@ -41,7 +41,7 @@ class Chaplin
     end
 
     def json_request?
-      @@default_headers['content_type'] == 'application/json'
+      @@default_headers['Content-Type'] == 'application/json'
     end
 
     def rendered_params(request_params)
