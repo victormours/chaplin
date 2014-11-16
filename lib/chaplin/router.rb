@@ -31,7 +31,11 @@ class Chaplin
       route = nil
       if json_route[2].start_with?("redirect ")
         redirect_path = json_route[2].split(' ').last
-        route = RedirectRoute.new(endpoint, redirect_path)
+
+        api_endpoints = json_route[3].map do |json_endpoint|
+          api_endpoint(json_endpoint)
+        end
+        route = RedirectRoute.new(endpoint, redirect_path, api_endpoints)
       else
         page = Page.new(templates_path + json_route[2], data_hash(json_route[3]))
         page.embed_in_layout(templates_path + layout_name, {}) if layout_name
