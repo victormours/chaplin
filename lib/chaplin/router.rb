@@ -30,6 +30,7 @@ class Chaplin
 
       route = nil
       if json_route[2].start_with?("redirect ")
+        redirect_path = json_route[2].split(' ').last
         route = RedirectRoute.new(endpoint, redirect_path)
       else
         page = Page.new(templates_path + json_route[2], data_hash(json_route[3]))
