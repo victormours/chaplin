@@ -18,19 +18,19 @@ class Chaplin
     attr_accessor :routes
 
     def load_routes
-      routes_json.each do |route|
-        add_route(route)
+      routes_json.each do |json_route|
+        add_route(json_route)
       end
     end
 
     private
 
-    def add_route(route)
-      endpoint = Endpoint.new(route[0].downcase.to_sym, route[1])
-      page = Page.new(templates_path + route[2], data_hash(route[3]))
-      if layout_name
-        page.embed_in_layout(templates_path + layout_name, {})
-      end
+    def add_route(json_route)
+      endpoint = Endpoint.new(json_route[0].downcase.to_sym, json_route[1])
+
+      page = Page.new(templates_path + json_route[2], data_hash(json_route[3]))
+      page.embed_in_layout(templates_path + layout_name, {}) if layout_name
+
       @routes << Route.new(endpoint, page)
     end
 

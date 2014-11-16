@@ -12,7 +12,7 @@ class Chaplin
 
     def self.configure(api_url, default_headers)
       @@client = Faraday.new(api_url)
-      @@default_headers = default_headers
+      @@default_headers = default_headers || {}
     end
 
     def render(request)
