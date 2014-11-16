@@ -11,6 +11,7 @@ PATH
     chaplin (0.0.0)
       faraday
       mustache
+      pry
       rack
       sinatra
 
@@ -83,7 +84,6 @@ DEPENDENCIES
   childprocess
   cucumber
   mustache!
-  pry
   rake
   relish
   rspec

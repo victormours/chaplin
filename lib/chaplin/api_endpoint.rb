@@ -27,18 +27,26 @@ class Chaplin
       @@client.send(
         http_method,
         parsed_path(request),
-        rendered_params(request.params),
+        api_request_params(request.params),
         @@default_headers
       )
     end
 
-    def rendered_params(request_params)
-      if params.respond_to?(:each_with_object)
-        params.each_with_object({}) do |(key, value), rendered_params|
-          rendered_params[key] = Mustache.render(value, request_params)
-        end
+    def api_request_params(chaplin_request_params)
+      if json_request?
+        rendered_params(chaplin_request_params).to_json
       else
-        Mustache.render(params, request_params)
+        rendered_params(chaplin_request_params)
+      end
+    end
+
+    def json_request?
+      @@default_headers['content_type'] == 'application/json'
+    end
+
+    def rendered_params(request_params)
+      params.each_with_object({}) do |(key, value), rendered_params|
+        rendered_params[key] = Mustache.render(value, request_params)
       end
     end
 

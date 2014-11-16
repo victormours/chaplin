@@ -15,7 +15,9 @@ class Chaplin
     end
 
     def default_headers
-      config['headers']
+      config['headers'].each_with_object({}) do |(header_key, header_value), lowercase_headers|
+        lowercase_headers[header_key.downcase] = header_value.downcase
+      end
     end
 
     private
