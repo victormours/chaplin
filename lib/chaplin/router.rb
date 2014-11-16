@@ -28,10 +28,16 @@ class Chaplin
     def add_route(json_route)
       endpoint = Endpoint.new(json_route[0].downcase.to_sym, json_route[1])
 
-      page = Page.new(templates_path + json_route[2], data_hash(json_route[3]))
-      page.embed_in_layout(templates_path + layout_name, {}) if layout_name
+      route = nil
+      if json_route[2].start_with?("redirect ")
+        route = RedirectRoute.new(endpoint, redirect_path)
+      else
+        page = Page.new(templates_path + json_route[2], data_hash(json_route[3]))
+        page.embed_in_layout(templates_path + layout_name, {}) if layout_name
+        route = PageRoute.new(endpoint, page)
+      end
 
-      @routes << Route.new(endpoint, page)
+      @routes << route
     end
 
     def data_hash(json_hash)

@@ -13,7 +13,7 @@ class Chaplin
 
       send(endpoint.http_method, endpoint.path) do
         request = Request.new(params)
-        route.execute(request)
+        route.execute(request, self)
       end
     end
   end
