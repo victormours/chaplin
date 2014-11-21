@@ -18,6 +18,10 @@ class Chaplin
       config['headers']
     end
 
+    def basic_auth
+      config['basic_auth']
+    end
+
     private
 
     def config

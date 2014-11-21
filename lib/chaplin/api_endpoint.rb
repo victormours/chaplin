@@ -10,8 +10,12 @@ class Chaplin
       super(http_method, path, params || {})
     end
 
-    def self.configure(api_url, default_headers)
-      @@client = Faraday.new(api_url)
+    def self.configure(api_url, default_headers, basic_auth)
+      @@client = Faraday.new(api_url) do |client|
+        if basic_auth
+          client.basic_auth(basic_auth['user'], basic_auth['password'])
+        end
+      end
       @@default_headers = default_headers || {}
     end
 
