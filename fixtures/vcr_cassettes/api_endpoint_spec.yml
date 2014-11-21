@@ -1,0 +1,22 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.github.com/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+  response:
+    status:
+      code: 0
+      message: 
+    headers: {}
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 21 Nov 2014 15:36:54 GMT
+recorded_with: VCR 2.9.3

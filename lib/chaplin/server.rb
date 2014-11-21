@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require_relative 'request'
 
 class Chaplin
   class Server < Sinatra::Base
@@ -12,8 +11,7 @@ class Chaplin
       endpoint = route.endpoint
 
       send(endpoint.http_method, endpoint.path) do
-        request = Request.new(params)
-        route.execute(request, self)
+        route.execute(params, self)
       end
     end
   end

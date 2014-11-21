@@ -9,17 +9,17 @@ class Chaplin
       self.template_path = layout_template_path
     end
 
-    def render(request)
+    def render(request_params)
       page = Mustache.new
       page.template_file = template_path
-      page.render(rendered_data(request).merge({params: request.params}))
+      page.render(rendered_data(request_params).merge({params: request_params}))
     end
 
     private
 
-    def rendered_data(request)
+    def rendered_data(request_params)
       data.each_with_object({}) do |(key, value), rendered_data|
-        rendered_data[key] = value.render(request)
+        rendered_data[key] = value.render(request_params)
       end
     end
   end

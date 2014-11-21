@@ -1,3 +1,5 @@
+require 'json'
+
 require 'faraday'
 require 'mustache'
 
@@ -11,7 +13,8 @@ class Chaplin
     end
 
     def self.configure(api_url, default_headers, basic_auth)
-      @@client = Faraday.new(api_url) do |client|
+      @@client = Faraday.new(url: api_url) do |client|
+        client.adapter Faraday.default_adapter
         if basic_auth
           client.basic_auth(basic_auth['user'], basic_auth['password'])
         end
@@ -19,19 +22,19 @@ class Chaplin
       @@default_headers = default_headers || {}
     end
 
-    def render(request)
-      response_body = api_response(request).body
+    def render(request_params)
+      response_body = api_response(request_params).body
       return nil if response_body == 'null'
       JSON.parse(response_body)
     end
 
     private
 
-    def api_response(request)
+    def api_response(request_params)
       @@client.send(
         http_method,
-        parsed_path(request),
-        api_request_params(request.params),
+        parsed_path(request_params),
+        api_request_params(request_params),
         @@default_headers
       )
     end
@@ -54,8 +57,8 @@ class Chaplin
       end
     end
 
-    def parsed_path(request)
-      Mustache.render(path, request.params)
+    def parsed_path(request_params)
+      Mustache.render(path, request_params)
     end
   end
 end
