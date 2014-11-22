@@ -7,15 +7,21 @@ class Chaplin
 
     describe "#render" do
 
-      it "returns a hash of the response" do
+      let(:github_json) { File.open("spec/fixtures/github_root.json") }
 
-        ApiEndpoint.configure("http://api.github.com", nil, nil)
+      it "returns a hash of the response" do
+        ApiEndpoint.configure("https://api.github.com", nil, nil)
 
         endpoint = ApiEndpoint.new(:get, '/', {})
-        VCR.use_cassette('api_endpoint_spec', record: :all) do
-          endpoint.render({})
+
+        VCR.use_cassette('api_endpoint_spec', record: :once) do
+          github_root = endpoint.render({})
+
+          expected_hash = JSON.load(github_json)
+          expect(github_root).to eq (expected_hash)
         end
       end
+
     end
   end
 
