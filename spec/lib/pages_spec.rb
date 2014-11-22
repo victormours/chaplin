@@ -7,9 +7,8 @@ class Chaplin
     describe '.load' do
       let(:raw_pages_data) do
         {
-          "index.html" => { "articles" => ["GET classes/article"] },
-          "article.html" => {
-            "article" => ["GET classes/article/{{article_id}}", { "published" => true }]
+          "index.html" => {
+            "articles" => ["GET classes/article"]
           }
         }
       end
@@ -19,6 +18,13 @@ class Chaplin
 
         index = pages["index.html"]
         expect(index.data.size).to eq 1
+      end
+
+      context "with a layout" do
+        it "embeds the pages in a layout" do
+          pages = Pages.load(raw_pages_data, "layout.html")
+          expect(pages['index.html'].template_path).to eq 'layout.html'
+        end
       end
     end
 

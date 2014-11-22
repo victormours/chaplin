@@ -3,10 +3,10 @@ require_relative 'api_endpoint'
 
 class Chaplin
 
-  Pages = Struct.new(:pages_data) do
+  Pages = Struct.new(:pages_data, :layout_name) do
 
-    def self.load(pages_data)
-      new(pages_data).tap do |pages|
+    def self.load(pages_data, layout_name = nil)
+      new(pages_data, layout_name).tap do |pages|
         pages.load
       end
     end
@@ -15,7 +15,9 @@ class Chaplin
       @pages = {}
 
       pages_data.each do |template_name, raw_data_hash|
-        @pages[template_name] = Page.new(template_name, data_hash(raw_data_hash))
+        page =  Page.new(template_name, data_hash(raw_data_hash))
+        page.embed_in_layout(layout_name) if layout_name
+        @pages[template_name] = page
       end
     end
 
