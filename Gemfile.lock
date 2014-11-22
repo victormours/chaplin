@@ -71,6 +71,8 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-mocks (3.0.3)
       rspec-support (~> 3.0.0)
+    rspec-preloader (1.0.1)
+      rspec
     rspec-support (3.0.3)
     safe_yaml (1.0.4)
     sinatra (1.4.5)
@@ -95,5 +97,6 @@ DEPENDENCIES
   rake
   relish
   rspec
+  rspec-preloader
   vcr
   webmock
