@@ -1,6 +1,7 @@
 require_relative 'chaplin/config'
 require_relative 'chaplin/router'
 require_relative 'chaplin/server'
+require_relative 'chaplin/api_endpoint'
 
 class Chaplin
 
