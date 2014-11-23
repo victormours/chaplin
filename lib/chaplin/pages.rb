@@ -30,12 +30,16 @@ class Chaplin
         template_path(template_name),
         data_hash(raw_data_hash)
       ).tap do |page|
-        page.embed_in_layout(layout_name) if layout_name
+        page.embed_in_layout(layout_path) if layout_name
       end
     end
 
     def template_path(template_name)
       project_path + '/templates/' + template_name
+    end
+
+    def layout_path
+      @layout_path ||= template_path(layout_name)
     end
 
     def data_hash(raw_data_hash)
@@ -63,6 +67,7 @@ class Chaplin
     def params(raw_api_endpoint)
       raw_api_endpoint[1] || {}
     end
+
 
   end
 
