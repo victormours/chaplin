@@ -1,8 +1,8 @@
 require 'json'
 
 require_relative 'endpoint'
-require_relative 'api_endpoint'
 require_relative 'pages'
+require_relative 'redirects'
 
 class Chaplin
 

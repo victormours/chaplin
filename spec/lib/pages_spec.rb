@@ -30,7 +30,7 @@ class Chaplin
         end
 
         it "embeds the pages in a layout" do
-          expect(pages['index.html'].template_path).to eq 'layout.html'
+          expect(pages['index.html'].template_path).to eq 'project/path/templates/layout.html'
         end
       end
     end
