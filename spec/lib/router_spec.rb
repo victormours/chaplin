@@ -21,10 +21,18 @@ class Chaplin
         let(:project_path) { "spec/fixtures/hello_chaplin" }
 
         it "creates a page route" do
-          route = routes.first
+          expect(routes.values.first.template_path).to eq 'spec/fixtures/hello_chaplin/templates/index.html'
         end
 
       end
+
+      describe "with a redirect" do
+        let(:project_path) { "spec/fixtures/redirect" }
+
+        it "creates a redirect response" do
+        end
+      end
+
       describe "with complex routes" do
         let(:project_path) { "spec/fixtures/blog" }
 
