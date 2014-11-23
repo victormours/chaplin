@@ -8,9 +8,14 @@ Feature: Request headers
     And I have the following routes.json file
     """
     {
-      "routes": [
-      ["GET", "/header", "header_echo.html", { "headers":  ["GET", "/headers"]}]
-      ]
+      "routes": {
+        "GET /header": "header_echo.html"
+      },
+
+      "pages": {
+        "header_echo.html": { "headers":  ["GET /headers"] }
+
+      }
     }
     """
     And I have the following chaplin_config.json file
@@ -36,6 +41,4 @@ Feature: Request headers
     """
     The content-type you're requesting to the distant API is application/json.
     """
-
-
 

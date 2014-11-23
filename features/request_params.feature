@@ -9,9 +9,9 @@ Feature: Using request parameters in templates
     And I have the following routes.json file
     """
     {
-      "routes": [
-        ["GET", "/name", "name.html", {}]
-      ]
+      "routes": {
+        "GET /name": "name.html"
+      }
     }
     """
     And I start a Chaplin server

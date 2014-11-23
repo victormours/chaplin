@@ -1,6 +1,6 @@
 After do
   `rm -rf tmp/*`
-  @chaplin_server.stop
+  @chaplin_server.stop if @chaplin_server
   @api_server.stop if @api_server
 
   if @api_pid
