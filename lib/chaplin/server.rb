@@ -7,11 +7,9 @@ class Chaplin
       set :public_folder, project_path + '/public'
     end
 
-    def self.add_route(route)
-      endpoint = route.endpoint
-
+    def self.add_route(endpoint, response)
       send(endpoint.http_method, endpoint.path) do
-        route.execute(params, self)
+        response.execute(params, self)
       end
     end
   end

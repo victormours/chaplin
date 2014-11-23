@@ -61,7 +61,7 @@ class Chaplin
     end
 
     def params(raw_api_endpoint)
-      raw_api_endpoint.last
+      raw_api_endpoint[1] || {}
     end
 
   end

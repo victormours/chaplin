@@ -9,9 +9,14 @@ Feature: Basic templating
     And I have the following routes.json file
     """
     {
-      "routes": [
-        ["GET", "/profile", "user_info.html", { "user_data": ["GET", "/user"]  }]
-      ]
+      "routes": {
+          "GET /profile": "user_info.html"
+      },
+
+      "pages": {
+        "user_info.html": { "user_data": ["GET /user"] }
+      }
+
     }
     """
     And I have an api running that responds to GET /user with the following JSON

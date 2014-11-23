@@ -9,6 +9,10 @@ class Chaplin
       self.template_path = layout_template_path
     end
 
+    def execute(request_params, sinatra_server)
+      render(request_params)
+    end
+
     def render(request_params)
       page = Mustache.new
       page.template_file = template_path

@@ -23,8 +23,8 @@ class Chaplin
   def build_server
     @router.load_routes
 
-    @router.routes.each do |route|
-      Server.add_route(route)
+    @router.routes.each do |endpoint, response|
+      Server.add_route(endpoint, response)
     end
   end
 
