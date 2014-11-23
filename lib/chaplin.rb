@@ -11,17 +11,16 @@ class Chaplin
     @router = Router.new(@project_path)
   end
 
-  # returns a Rack application
   def server
     ApiEndpoint.configure(@config.api_url, @config.default_headers, @config.basic_auth)
     Server.setup(@project_path)
-    load_server
+    build_server
     Server.new
   end
 
   private
 
-  def load_server
+  def build_server
     @router.load_routes
 
     @router.routes.each do |route|

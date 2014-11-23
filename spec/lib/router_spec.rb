@@ -10,9 +10,11 @@ class Chaplin
 
     describe "#load_routes" do
 
+      before do
+        router.load_routes
+      end
 
-      let(:routes) { router.load_routes }
-
+      let(:routes) { router.routes }
 
       describe "with a minimal routes file" do
 
@@ -26,7 +28,7 @@ class Chaplin
       describe "with complex routes" do
         let(:project_path) { "spec/fixtures/blog" }
 
-        it "returns an array of all the routes" do
+        it "returns a hash of all the routes" do
           expect(routes.count).to eq 5
         end
       end
