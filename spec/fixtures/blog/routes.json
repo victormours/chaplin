@@ -24,7 +24,7 @@
     {
       "create_article": [
         "/",
-        "POST classes/article", {"content": "{{ content }}", "title": "{{ title }}"}
+        [["POST classes/article", {"content": "{{ content }}", "title": "{{ title }}"}]]
       ]
   }
 

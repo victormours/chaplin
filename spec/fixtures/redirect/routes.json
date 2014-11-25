@@ -7,7 +7,7 @@
   "redirects":
     {
       "index": [
-        "/", "POST /redirect_counter", {"times": 1}
+        "/", [["POST /redirect_counter", {"times": 1}]]
       ]
   }
 

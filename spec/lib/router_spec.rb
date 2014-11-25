@@ -30,6 +30,8 @@ class Chaplin
         let(:project_path) { "spec/fixtures/redirect" }
 
         it "creates a redirect response" do
+          redirect = routes.values.first
+          expect(redirect.redirect_path).to eq '/'
         end
       end
 

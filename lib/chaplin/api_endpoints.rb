@@ -1,4 +1,4 @@
-require_relative 'endpoint'
+require_relative 'api_endpoint'
 
 class Chaplin
 
