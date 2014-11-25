@@ -6,9 +6,10 @@ Feature: Embedding templates in layout
     """
     {
       "layout": "layout.html",
-      "routes": [
-        ["GET", "/", "index.html", {}]
-      ]
+
+      "routes": {
+        "GET /": "index.html"
+      }
     }
     """
     And I have the following templates/layout.html file

@@ -1,0 +1,32 @@
+{
+  "layout": "layout.html",
+
+  "routes":
+    {
+
+    "GET /":                    "index.html",
+    "GET /article/:article_id": "article.html",
+    "GET /new":                 "new_article.html",
+    "POST /create":             "redirect create_article",
+    "GET /about":               "about.html"
+
+  },
+
+
+  "pages":
+    {
+      "index.html": { "articles": ["GET classes/article"] },
+      "article.html": { "article": ["GET classes/article/{{article_id}}"] }
+  },
+
+
+  "redirects":
+    {
+      "create_article": [
+        "/",
+        [["POST classes/article", {"content": "{{ content }}", "title": "{{ title }}"}]]
+      ]
+  }
+
+}
+

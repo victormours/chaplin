@@ -9,9 +9,13 @@ Feature: Dynamic api requests
     And I have the following routes.json file
     """
     {
-      "routes": [
-        ["GET", "/film/:film_name", "film.html", {"film": ["GET", "/films/{{film_name}}"]}]
-      ]
+      "routes": {
+        "GET /film/:film_name": "film.html"
+      },
+
+      "pages": {
+        "film.html": {"film": ["GET /films/{{film_name}}"]}
+      }
     }
     """
     And I have the following API running

@@ -25,12 +25,13 @@ Feature:  Parameters for api requests
     Given I have the following routes.json file
     """
     {
-      "routes": [
-        [
-          "GET", "/city_lights", "movie.html",
-          { "movie": ["GET", "/search", {"title": "City Lights"}] }
-        ]
-      ]
+      "routes": {
+        "GET /city_lights": "movie.html"
+      },
+
+      "pages": {
+        "movie.html": { "movie": ["GET /search", {"title": "City Lights"}] }
+      }
     }
     """
     And I start a Chaplin server
@@ -44,9 +45,13 @@ Feature:  Parameters for api requests
     And I have the following routes.json file
     """
     {
-      "routes": [
-        ["GET", "/search", "movie.html", { "movie": ["GET", "/search", {"title": "{{title}}"}] }]
-      ]
+      "routes": {
+        "GET /search": "movie.html"
+      },
+
+      "pages": {
+        "movie.html": { "movie": ["GET /search", {"title": "{{ title }}"}] }
+      }
     }
     """
     And I start a Chaplin server

@@ -9,9 +9,9 @@ Feature: Dynamic routes
     And I have the following routes.json file
     """
     {
-      "routes": [
-        ["GET", "/name/:firstname", "name.html", {}]
-      ]
+      "routes": {
+        "GET /name/:firstname": "name.html"
+      }
     }
     """
     And I start a Chaplin server

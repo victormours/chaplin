@@ -1,0 +1,15 @@
+{
+  "routes":
+    {
+    "GET /redirection": "redirect index"
+  },
+
+  "redirects":
+    {
+      "index": [
+        "/", [["POST /redirect_counter", {"times": 1}]]
+      ]
+  }
+
+}
+
