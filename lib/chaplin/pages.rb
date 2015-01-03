@@ -43,8 +43,16 @@ class Chaplin
     end
 
     def data_hash(raw_data_hash)
-      raw_data_hash.each_with_object({}) do |(key, raw_api_endpoint), data_hash|
-        data_hash[key] = ApiEndpoints.build(raw_api_endpoint)
+      raw_data_hash.each_with_object({}) do |(key, raw_data_value), data_hash|
+        data_hash[key] = build_data(raw_data_value)
+      end
+    end
+
+    def build_data(raw_data_value)
+      if raw_data_value.is_a?(String)
+        @pages[raw_data_value]
+      else
+        ApiEndpoints.build(raw_data_value)
       end
     end
 

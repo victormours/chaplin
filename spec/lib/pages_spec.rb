@@ -33,6 +33,28 @@ class Chaplin
           expect(pages['index.html'].template_path).to eq 'project/path/templates/layout.html'
         end
       end
+
+      context "with a partial" do
+        let(:raw_pages_data) do
+          {
+            "comments.html" => {
+              "comments" => ["GET classes/comments/", {"article_id" => "{{id}}"}]
+            },
+            "article.html" => {
+              "article" => ["GET classes/articles/{{id}}"],
+              "comments" => "comments.html"
+            }
+          }
+        end
+
+        let(:comments_partial) do
+          pages['article.html'].data['comments']
+        end
+
+        it "embeds the pages in a layout" do
+          expect(comments_partial.data.keys).to eq ["comments"]
+        end
+      end
     end
 
     describe '#[]' do
