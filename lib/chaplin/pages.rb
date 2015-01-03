@@ -18,7 +18,7 @@ class Chaplin
         @pages[template_name] = build_page(template_name, raw_data_hash)
       end
 
-      pages.each { |page| page.embed_in_layout(layout_path) } if layout_name
+      @pages.each { |page| page.embed_in_layout(layout_path) } if layout_name
     end
 
     def [](page_name)
