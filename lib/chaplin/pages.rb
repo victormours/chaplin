@@ -18,7 +18,11 @@ class Chaplin
         @pages[template_name] = build_page(template_name, raw_data_hash)
       end
 
-      @pages.each { |page| page.embed_in_layout(layout_path) } if layout_name
+      if layout_name
+        @pages = @pages.each_with_object({}) do |(page_name, page), pages_in_layout|
+          pages_in_layout[page_name] = embed_in_layout(page)
+        end
+      end
     end
 
     def [](page_name)
@@ -26,6 +30,10 @@ class Chaplin
     end
 
     private
+
+    def embed_in_layout(page)
+      Page.new(layout_path, { content: page })
+    end
 
     def build_page(template_name, raw_data_hash)
       Page.new(template_path(template_name), data_hash(raw_data_hash))

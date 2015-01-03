@@ -4,11 +4,6 @@ class Chaplin
   # data is a hash with symbols as keys and api endpoints or other pages as values
   class Page < Struct.new(:template_path, :data)
 
-    def embed_in_layout(layout_template_path, layout_data = {})
-      self.data = { content: Page.new(template_path, data) }.merge(layout_data)
-      self.template_path = layout_template_path
-    end
-
     def execute(request_params, sinatra_server)
       render(request_params)
     end
