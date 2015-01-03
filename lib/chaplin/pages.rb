@@ -17,6 +17,8 @@ class Chaplin
       pages_data.each do |template_name, raw_data_hash|
         @pages[template_name] = build_page(template_name, raw_data_hash)
       end
+
+      pages.each { |page| page.embed_in_layout(layout_path) } if layout_name
     end
 
     def [](page_name)
@@ -26,12 +28,7 @@ class Chaplin
     private
 
     def build_page(template_name, raw_data_hash)
-      Page.new(
-        template_path(template_name),
-        data_hash(raw_data_hash)
-      ).tap do |page|
-        page.embed_in_layout(layout_path) if layout_name
-      end
+      Page.new(template_path(template_name), data_hash(raw_data_hash))
     end
 
     def template_path(template_name)
