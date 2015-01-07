@@ -1,7 +1,7 @@
 require 'json'
 
-require_relative 'endpoint'
-require_relative 'pages'
+require_relative 'server/endpoint'
+require_relative 'builder/pages'
 require_relative 'redirects'
 
 class Chaplin
