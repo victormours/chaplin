@@ -2,7 +2,7 @@ require_relative '../page'
 require_relative 'api_endpoints'
 
 class Chaplin
-  module Builder
+  module Builders
 
     Pages = Struct.new(:pages_data, :project_path, :layout_name) do
 

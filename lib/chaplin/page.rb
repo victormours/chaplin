@@ -2,7 +2,7 @@ require 'mustache'
 
 class Chaplin
   # data is a hash with symbols as keys and api endpoints or other pages as values
-  class Page < Struct.new(:template_path, :data)
+  Page = Struct.new(:template_path, :data) do
 
     def execute(request_params, sinatra_server)
       render(request_params)

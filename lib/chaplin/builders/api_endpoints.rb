@@ -2,7 +2,7 @@ require_relative '../api_endpoint'
 
 class Chaplin
 
-  module Builder
+  module Builders
 
     ApiEndpoints = Struct.new(:raw_api_endpoint) do
 

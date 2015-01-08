@@ -1,9 +1,9 @@
-
 require 'spec_helper'
 
-require_relative '../../lib/chaplin/router'
+require_relative '../../lib/chaplin/builders/router'
 
 class Chaplin
+  module Builders
   describe Router do
 
     subject(:router) { Router.new(project_path) }
