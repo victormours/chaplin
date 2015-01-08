@@ -3,7 +3,7 @@ require 'spec_helper'
 
 require_relative '../../lib/chaplin/router'
 
-class Chaplin
+module Chaplin::Builders
   describe Router do
 
     subject(:router) { Router.new(project_path) }
