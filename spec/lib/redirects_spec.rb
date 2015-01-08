@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require_relative '../../lib/chaplin/builders/redirects'
 
-class Chaplin::Builders
+module Chaplin::Builders
   describe Redirects do
 
     let(:raw_redirect_data) do
