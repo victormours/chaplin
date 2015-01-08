@@ -6,7 +6,7 @@ require 'mustache'
 require_relative 'endpoint'
 
 class Chaplin
-  class ApiEndpoint < Struct.new(:http_method, :path, :params)
+  ApiEndpoint = Struct.new(:http_method, :path, :params) do
 
     def initialize(http_method, path, params)
       super(http_method, path, params || {})

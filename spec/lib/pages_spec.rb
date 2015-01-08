@@ -1,7 +1,7 @@
 require 'spec_helper'
-require_relative '../../lib/chaplin/pages'
+require_relative '../../lib/chaplin/builders/pages'
 
-class Chaplin
+module Chaplin::Builders
   describe Pages do
 
     let(:pages) { Pages.load(raw_pages_data, "project/path") }

@@ -1,7 +1,6 @@
-
 require 'spec_helper'
 
-require_relative '../../lib/chaplin/router'
+require_relative '../../lib/chaplin/builders/router'
 
 module Chaplin::Builders
   describe Router do
