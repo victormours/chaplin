@@ -8,8 +8,8 @@ class Chaplin
 
   def initialize(project_path)
     @project_path = project_path
-    @config = Config.new(@project_path)
-    @router = Router.new(@project_path)
+    @config = Builders::Config.new(@project_path)
+    @router = Builders::Router.new(@project_path)
   end
 
   def server
