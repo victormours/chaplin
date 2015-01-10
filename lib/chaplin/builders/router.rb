@@ -1,8 +1,6 @@
 require 'json'
 
 require_relative '../endpoint'
-require_relative 'pages'
-require_relative 'redirects'
 
 class Chaplin
   module Builders
@@ -22,9 +20,9 @@ class Chaplin
         @routes_declarations.each do |endpoint, response|
           if redirect?(response)
             redirect_name = response.split(' ').last
-            @routes[build_endpoint(endpoint)] = redirects[redirect_name]
+            @routes[build_endpoint(endpoint)] = @redirects[redirect_name]
           else
-            @routes[build_endpoint(endpoint)] = pages[response]
+            @routes[build_endpoint(endpoint)] = @pages[response]
           end
         end
       end

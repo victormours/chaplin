@@ -1,5 +1,7 @@
 require_relative 'chaplin/builders/config'
 require_relative 'chaplin/builders/router'
+require_relative 'chaplin/builders/pages'
+require_relative 'chaplin/builders/redirects'
 require_relative 'chaplin/server'
 require_relative 'chaplin/api_endpoint'
 
@@ -22,12 +24,12 @@ class Chaplin
   private
 
   def build_server
-    pages = Pages.load(pages_data, @project_path, layout_name)
-    redirects = Redirects.load(redirects_data)
+    pages = Builders::Pages.load(pages_data, @project_path, layout_name)
+    redirects = Builders::Redirects.load(redirects_data)
     router = Builders::Router.new(routes_json, pages, redirects)
     router.load_routes
 
-    @router.routes.each do |endpoint, response|
+    router.routes.each do |endpoint, response|
       Server.add_route(endpoint, response)
     end
   end
