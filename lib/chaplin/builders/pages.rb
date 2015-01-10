@@ -19,15 +19,14 @@ class Chaplin
           @pages[template_name] = build_page(template_name, raw_data_hash)
         end
 
-        if layout_name
-          @pages = @pages.each_with_object({}) do |(page_name, page), pages_in_layout|
-            pages_in_layout[page_name] = embed_in_layout(page)
-          end
+        return unless layout_name
+        @pages = @pages.each_with_object({}) do |(page_name, page), pages_in_layout|
+          pages_in_layout[page_name] = embed_in_layout(page)
         end
       end
 
       def [](page_name)
-        @pages[page_name] || build_page(page_name, {})
+        @pages[page_name] || build_templated_page(page_name)
       end
 
       private
@@ -38,6 +37,11 @@ class Chaplin
 
       def build_page(template_name, raw_data_hash)
         Page.new(template_path(template_name), data_hash(raw_data_hash))
+      end
+
+      def build_templated_page(page_name, raw_data_hash: {})
+        page = build_page(page_name, raw_data_hash)
+        layout_name ? embed_in_layout(page) : page
       end
 
       def template_path(template_name)
@@ -55,11 +59,15 @@ class Chaplin
       end
 
       def build_data(raw_data_value)
-        if raw_data_value.is_a?(String)
+        if partial?(raw_data_value)
           @pages[raw_data_value]
         else
           ApiEndpoints.build(raw_data_value)
         end
+      end
+
+      def partial?(raw_data_value)
+        raw_data_value.is_a?(String)
       end
 
     end
