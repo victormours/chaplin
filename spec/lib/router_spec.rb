@@ -5,7 +5,7 @@ require_relative '../../lib/chaplin/builders/router'
 module Chaplin::Builders
   describe Router do
 
-    subject(:router) { Router.new(project_path) }
+    subject(:router) { Router.new(routes_declarations, {}, {}) }
 
     describe "#load_routes" do
 
@@ -17,7 +17,9 @@ module Chaplin::Builders
 
       describe "with a minimal routes file" do
 
-        let(:project_path) { "spec/fixtures/hello_chaplin" }
+        let(:routes_declarations) do
+          { "routes" => { "GET /" => "index.html" } }
+        end
 
         it "creates a page route" do
           expect(routes.values.first.template_path).to eq 'spec/fixtures/hello_chaplin/templates/index.html'
