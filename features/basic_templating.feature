@@ -6,18 +6,15 @@ Feature: Basic templating
     """
     {{#user_data}}Your name is {{name}}{{/user_data}}
     """
-    And I have the following routes.json file
+    And I have the following app.yml file
     """
-    {
-      "routes": {
-          "GET /profile": "user_info.html"
-      },
+    routes:
+      GET /profile: user_info.html
 
-      "pages": {
-        "user_info.html": { "user_data": ["GET /user"] }
-      }
+    pages:
 
-    }
+      user_info.html:
+        user_data: GET /user
     """
     And I have an api running that responds to GET /user with the following JSON
     """

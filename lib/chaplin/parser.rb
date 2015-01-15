@@ -1,4 +1,4 @@
-require_relative 'parser/config'
+require_relative 'parser/declaration_file'
 require_relative 'parser/router'
 require_relative 'parser/pages'
 require_relative 'parser/redirects'
@@ -34,7 +34,7 @@ class Chaplin
     end
 
     def self.app_declaration
-      @@app_declaration ||= JSON.load(File.open(@@project_path + "/routes.json"))
+      @@app_declaration ||= DeclarationFile.app_declaration(@@project_path)
     end
 
   end

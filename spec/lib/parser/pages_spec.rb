@@ -8,7 +8,7 @@ module Chaplin::Parser
     let(:raw_pages_data) do
       {
         "index.html" => {
-          "articles" => ["GET classes/article"]
+          "articles" => "GET classes/article"
         }
       }
     end
@@ -41,7 +41,7 @@ module Chaplin::Parser
               "comments" => ["GET classes/comments/", {"article_id" => "{{id}}"}]
             },
             "article.html" => {
-              "article" => ["GET classes/articles/{{id}}"],
+              "article" => "GET classes/articles/{{id}}",
               "comments" => "comments.html"
             }
           }

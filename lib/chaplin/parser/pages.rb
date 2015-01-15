@@ -67,7 +67,7 @@ class Chaplin
       end
 
       def partial?(raw_data_value)
-        raw_data_value.is_a?(String)
+        raw_data_value.is_a?(String) && !raw_data_value.include?(' ')
       end
 
     end
