@@ -1,8 +1,8 @@
-require_relative '../redirect'
+require_relative '../responses/redirect'
 require_relative 'api_endpoints'
 
 class Chaplin
-  module Builders
+  module Parser
 
     Redirects = Struct.new(:raw_redirect_data) do
 
@@ -12,7 +12,7 @@ class Chaplin
 
       def load
         raw_redirect_data.each_with_object({}) do |(redirect_name, redirect_data), redirects_hash|
-          redirects_hash[redirect_name.to_s] = Redirect.new(redirect_data.first, api_requests(redirect_data[1]))
+          redirects_hash[redirect_name.to_s] = Responses::Redirect.new(redirect_data.first, api_requests(redirect_data[1]))
         end
       end
 

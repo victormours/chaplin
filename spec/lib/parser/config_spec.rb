@@ -1,7 +1,7 @@
 require 'spec_helper'
-require_relative '../../lib/chaplin/builders/config'
+require_relative '../../../lib/chaplin/parser/config'
 
-module Chaplin::Builders
+module Chaplin::Parser
   describe Config do
 
     describe '#api_url' do

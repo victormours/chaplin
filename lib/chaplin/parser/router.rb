@@ -3,7 +3,7 @@ require 'json'
 require_relative '../endpoint'
 
 class Chaplin
-  module Builders
+  module Parser
 
     class Router
 
