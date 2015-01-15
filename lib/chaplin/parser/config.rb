@@ -1,7 +1,7 @@
 require 'json'
 
 class Chaplin
-  module Builders
+  module Parser
 
     Config = Struct.new(:project_path) do
 

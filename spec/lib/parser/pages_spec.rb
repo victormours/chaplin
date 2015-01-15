@@ -1,14 +1,14 @@
 require 'spec_helper'
-require_relative '../../lib/chaplin/builders/pages'
+require_relative '../../../lib/chaplin/parser/pages'
 
-module Chaplin::Builders
+module Chaplin::Parser
   describe Pages do
 
     let(:pages) { Pages.load(raw_pages_data, "project/path") }
     let(:raw_pages_data) do
       {
         "index.html" => {
-          "articles" => ["GET classes/article"]
+          "articles" => "GET classes/article"
         }
       }
     end
@@ -41,7 +41,7 @@ module Chaplin::Builders
               "comments" => ["GET classes/comments/", {"article_id" => "{{id}}"}]
             },
             "article.html" => {
-              "article" => ["GET classes/articles/{{id}}"],
+              "article" => "GET classes/articles/{{id}}",
               "comments" => "comments.html"
             }
           }

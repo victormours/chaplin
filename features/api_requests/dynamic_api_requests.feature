@@ -6,17 +6,16 @@ Feature: Dynamic api requests
     """
     {{film.title}} came out in {{film.year}}.
     """
-    And I have the following routes.json file
+    And I have the following app.yml file
     """
-    {
-      "routes": {
-        "GET /film/:film_name": "film.html"
-      },
+    routes:
+      GET /film/:film_name: film.html
 
-      "pages": {
-        "film.html": {"film": ["GET /films/{{film_name}}"]}
-      }
-    }
+    pages:
+
+      film.html:
+        film: GET /films/{{film_name}}
+
     """
     And I have the following API running
     """

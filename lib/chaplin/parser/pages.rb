@@ -1,8 +1,8 @@
-require_relative '../page'
+require_relative '../responses/page'
 require_relative 'api_endpoints'
 
 class Chaplin
-  module Builders
+  module Parser
 
     Pages = Struct.new(:pages_data, :project_path, :layout_name) do
 
@@ -32,11 +32,11 @@ class Chaplin
       private
 
       def embed_in_layout(page)
-        Page.new(layout_path, { content: page })
+        Responses::Page.new(layout_path, { content: page })
       end
 
       def build_page(template_name, raw_data_hash)
-        Page.new(template_path(template_name), data_hash(raw_data_hash))
+        Responses::Page.new(template_path(template_name), data_hash(raw_data_hash))
       end
 
       def build_templated_page(page_name, raw_data_hash: {})
@@ -67,7 +67,7 @@ class Chaplin
       end
 
       def partial?(raw_data_value)
-        raw_data_value.is_a?(String)
+        raw_data_value.is_a?(String) && !raw_data_value.include?(' ')
       end
 
     end

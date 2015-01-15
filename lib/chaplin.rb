@@ -1,15 +1,13 @@
-require_relative 'chaplin/builders/config'
-require_relative 'chaplin/builders/router'
+require_relative 'chaplin/parser'
+require_relative 'chaplin/parser/config'
 require_relative 'chaplin/server'
 require_relative 'chaplin/api_endpoint'
 
 class Chaplin
 
-
   def initialize(project_path)
     @project_path = project_path
-    @config = Builders::Config.new(@project_path)
-    @router = Builders::Router.new(@project_path)
+    @config = Parser::Config.new(@project_path)
   end
 
   def server
@@ -22,9 +20,7 @@ class Chaplin
   private
 
   def build_server
-    @router.load_routes
-
-    @router.routes.each do |endpoint, response|
+    Parser.routes(@project_path).each do |endpoint, response|
       Server.add_route(endpoint, response)
     end
   end
