@@ -8,17 +8,14 @@ class Chaplin
 
       let(:raw_redirect_data) do
         {
-          "create_article" => [
-            "/",
-            [
-              ["POST classes/article",
-               {
-                "content" => "{{ content }}",
-                "title" => "{{ title }}"
+          "create_article" => {
+            'path' => "/",
+            'requests' =>
+              { 'article' =>
+                  ["POST classes/article",
+                 { "content" => "{{ content }}", "title" => "{{ title }}" } ]
               }
-            ]
-            ]
-          ]
+          }
         }
       end
 
