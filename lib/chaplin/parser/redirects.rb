@@ -19,9 +19,8 @@ class Chaplin
       private
 
       def api_requests(raw_requests_data)
-        raw_requests_data.values.map do |request_declaration|
-          p request_declaration
-          ApiEndpoints.build(request_declaration)
+        raw_requests_data.each_with_object({}) do |(key, request_declaration), data_hash|
+          data_hash[key] = ApiEndpoints.build(request_declaration)
         end
       end
 
