@@ -8,17 +8,14 @@ class Chaplin
 
       let(:raw_redirect_data) do
         {
-          "create_article" => [
-            "/",
-            [
-              ["POST classes/article",
-               {
-                "content" => "{{ content }}",
-                "title" => "{{ title }}"
+          "create_article" => {
+            'path' => "/",
+            'requests' =>
+              { 'article' =>
+                  ["POST classes/article",
+                 { "content" => "{{ content }}", "title" => "{{ title }}" } ]
               }
-            ]
-            ]
-          ]
+          }
         }
       end
 
@@ -32,7 +29,7 @@ class Chaplin
         end
 
         it "loads redirects api requests from raw data" do
-          expect(create_article.api_requests.first.http_method).to eq :post
+          expect(create_article.api_requests_hash.values.first.http_method).to eq :post
         end
 
       end

@@ -6,10 +6,10 @@ require 'mustache'
 require_relative 'endpoint'
 
 class Chaplin
-  ApiEndpoint = Struct.new(:http_method, :path, :params) do
+  ApiEndpoint = Struct.new(:http_method, :path, :params, :headers) do
 
-    def initialize(http_method, path, params)
-      super(http_method, path, params || {})
+    def initialize(http_method, path, params, headers = {})
+      super(http_method, path, params || {}, headers)
     end
 
     def self.configure(api_url, default_headers, basic_auth)
@@ -41,14 +41,18 @@ class Chaplin
 
     def api_request_params(chaplin_request_params)
       if json_request? && [:post, :put].include?(http_method)
-        rendered_params(chaplin_request_params).to_json
+        Mustache.render(params.to_json, chaplin_request_params)
       else
         rendered_params(chaplin_request_params)
       end
     end
 
     def json_request?
-      @@default_headers['Content-Type'] == 'application/json'
+      request_headers['Content-Type'] == 'application/json'
+    end
+
+    def request_headers
+      @@default_headers.merge(headers)
     end
 
     def rendered_params(request_params)

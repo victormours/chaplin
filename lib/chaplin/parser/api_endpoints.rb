@@ -15,7 +15,7 @@ class Chaplin
       end
 
       def build
-        ApiEndpoint.new(http_method, path, params)
+        ApiEndpoint.new(http_method, path, params, headers)
       end
 
       private
@@ -34,6 +34,10 @@ class Chaplin
 
       def params
         @api_endpoint_declaration[1] || {}
+      end
+
+      def headers
+        @api_endpoint_declaration[2] || {}
       end
 
     end
