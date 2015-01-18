@@ -105,6 +105,7 @@ DEPENDENCIES
   childprocess
   cucumber
   mustache!
+  rack-test
   rake
   relish
   rspec

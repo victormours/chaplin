@@ -14,9 +14,7 @@ class Chaplin
         @routes = {}
       end
 
-      attr_accessor :routes
-
-      def load_routes
+      def routes
         @routes_declarations.each do |endpoint, response|
           if redirect?(response)
             redirect_name = response.split(' ').last
@@ -25,6 +23,7 @@ class Chaplin
             @routes[build_endpoint(endpoint)] = @pages[response]
           end
         end
+        @routes
       end
 
       private
