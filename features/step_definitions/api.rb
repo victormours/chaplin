@@ -1,3 +1,5 @@
+require 'childprocess'
+
 Given(/^I have the following API running$/) do |sinatra_api_code|
   `echo "require 'json'" > tmp/api.rb`
   `echo "require 'sinatra'" >> tmp/api.rb`
