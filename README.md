@@ -25,14 +25,14 @@ You can start the server either with the `chaplin` command, or as a Rack applica
 Documentation:
 ---
 
-- [Relish docs](relishapp.com/victormours/chaplin/docs)
+- [Relish docs](https://relishapp.com/victormours/chaplin/docs)
 
-- [chaplin-blog](github.com/victormours/chaplin-blog) is an example app with a Parse backend
+- [chaplin-blog](https://github.com/victormours/chaplin-blog) is an example app with a Parse backend
 
-- [chaplin-init](github.com/victormours/chaplin-init) is a starting point with some basic front end dev tooling (gulp, zurb foundation and such)
+- [chaplin-init](https://github.com/victormours/chaplin-init) is a starting point with some basic front end dev tooling (gulp, zurb foundation and such)
 
 
 Support
 ---
 
-For troubleshooting or any questions about using Chaplin, hit me up on twitter [@VictorMours](twitter.com/VictorMours).
+For troubleshooting or any questions about using Chaplin, hit me up on twitter [@VictorMours](https://twitter.com/VictorMours).
