@@ -7,13 +7,13 @@ class Chaplin
     Page = Struct.new(:template_path, :data) do
 
       def execute(request_params, sinatra_server)
-        render(request_params)
+        render(request_params, sinatra_server)
       end
 
-      def render(request_params)
+      def render(request_params, sinatra_server)
         page = Mustache.new
         page.template_file = template_path
-        page.render(rendered_data(request_params).merge({params: request_params}))
+        page.render(rendered_data(request_params).merge({params: request_params, session: sinatra_server.cookies}))
       end
 
       private

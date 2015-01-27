@@ -9,7 +9,7 @@ Given(/^I have the following API running$/) do |sinatra_api_code|
   # Uncomment the following line to see the server's output
   # @api_server.io.inherit!
   @api_server.start
-  sleep 1
+  sleep 3
 end
 
 

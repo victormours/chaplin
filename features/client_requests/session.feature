@@ -23,7 +23,8 @@ Feature: Sessions
 
       logout:
         path: '/'
-        session: delete
+        delete_session:
+          - username
         requests: {}
     """
     And I have the following templates/index.html file
