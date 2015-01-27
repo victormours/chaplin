@@ -1,3 +1,5 @@
+require 'mustache'
+
 class Chaplin
   module Responses
 
