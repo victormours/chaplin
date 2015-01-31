@@ -23,9 +23,8 @@ module Chaplin::Parser
     end
     let(:post_redirect) { double }
 
-    describe "#load_routes" do
+    describe "#routes" do
 
-      before { router.load_routes }
       let(:routes) { router.routes }
 
       describe "with a minimal routes file" do
