@@ -11,12 +11,25 @@ module Chaplin::Responses
       context "with a session hash" do
 
         let(:redirect) do
-          described_class.new('/', {})
+          described_class.new('/', api_requests_hash, cookie_hash)
         end
 
-        let(:server) { double(redirect: true) }
+        let(:api_requests_hash) do
+          {
+            login: double(render: { username: 'Bob' })
+          }
+        end
+
+        let(:cookie_hash) do
+          {
+            username: '{{login.username}}'
+          }
+        end
+
+        let(:server) { double(redirect: true, cookies: {}) }
 
         it "writes the session to the server" do
+          expect(server).to receive(:cookies)
           redirect.execute({}, server)
 
         end
