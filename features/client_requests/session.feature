@@ -16,14 +16,14 @@ Feature: Sessions
 
       login:
         path: "/"
-        session:
+        cookies:
           username: '{{login.username}}'
         requests:
-          login: POST login
+          login: GET login
 
       logout:
         path: '/'
-        delete_session:
+        delete_cookies:
           - username
         requests: {}
     """
@@ -38,7 +38,7 @@ Feature: Sessions
     """
     And I have the following API running
     """
-    post "/login" do
+    get "/login" do
       { username: "Bob"}.to_json
     end
     """
