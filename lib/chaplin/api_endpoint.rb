@@ -22,7 +22,7 @@ class Chaplin
       @@default_headers = default_headers || {}
     end
 
-    def render(request_params)
+    def render(request_params, sinatra_server)
       response_body = api_response(request_params).body
       return nil if response_body == 'null'
       JSON.parse(response_body)

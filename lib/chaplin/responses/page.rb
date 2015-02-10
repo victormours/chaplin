@@ -13,14 +13,14 @@ class Chaplin
       def render(request_params, sinatra_server)
         page = Mustache.new
         page.template_file = template_path
-        page.render(rendered_data(request_params).merge({params: request_params, cookies: sinatra_server.cookies}))
+        page.render(rendered_data(request_params, sinatra_server).merge({params: request_params, cookies: sinatra_server.cookies}))
       end
 
       private
 
-      def rendered_data(request_params)
+      def rendered_data(request_params, sinatra_server)
         data.each_with_object({}) do |(key, value), rendered_data|
-          rendered_data[key] = value.render(request_params)
+          rendered_data[key] = value.render(request_params, sinatra_server)
         end
       end
     end
