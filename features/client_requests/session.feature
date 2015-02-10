@@ -29,12 +29,12 @@ Feature: Sessions
     """
     And I have the following templates/index.html file
     """
-    {{#session.username}}
-    Your name is {{session.username}}.
-    {{/session.username}}
-    {{^session.username}}
+    {{#cookies.username}}
+    Your name is {{cookies.username}}.
+    {{/cookies.username}}
+    {{^cookies.username}}
     Please log in
-    {{/session.username}}
+    {{/cookies.username}}
     """
     And I have the following API running
     """
