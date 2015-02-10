@@ -13,7 +13,7 @@ class Chaplin
       def render(request_params, sinatra_server)
         page = Mustache.new
         page.template_file = template_path
-        page.render(rendered_data(request_params, sinatra_server).merge({params: request_params, cookies: sinatra_server.cookies}))
+        page.render(rendered_data(request_params, sinatra_server).merge({params: request_params, cookies: sinatra_server.cookies.to_h}))
       end
 
       private
