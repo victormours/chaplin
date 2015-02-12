@@ -24,7 +24,7 @@ class Chaplin
 
     def render(request_params)
       response_body = api_response(request_params).body
-      return nil if response_body == 'null'
+      return nil if (response_body == 'null' or response_body == '')
       JSON.parse(response_body)
     end
 
