@@ -40,7 +40,7 @@ class Chaplin
     end
 
     def api_request_params(chaplin_request_params)
-      if json_request? && [:post, :put].include?(http_method)
+      if json_request? && [:post, :put, :patch].include?(http_method)
         Mustache.render(params.to_json, chaplin_request_params)
       else
         rendered_params(chaplin_request_params)
