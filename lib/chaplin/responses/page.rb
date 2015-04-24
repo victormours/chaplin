@@ -7,18 +7,18 @@ class Chaplin
     Page = Struct.new(:template_path, :data) do
 
       def execute(request_params, sinatra_server)
-        render(request_params, sinatra_server)
+        render(request_params)
       end
 
-      def render(request_params, sinatra_server)
+      def render(request_params)
         page = Mustache.new
         page.template_file = template_path
-        page.render(rendered_data(request_params, sinatra_server).merge({params: request_params, cookies: sinatra_server.cookies.to_h}))
+        page.render(rendered_data(request_params).merge({params: request_params}))
       end
 
       private
 
-      def rendered_data(request_params, sinatra_server)
+      def rendered_data(request_params)
         data.each_with_object({}) do |(key, value), rendered_data|
           rendered_data[key] = value.render(request_params, sinatra_server)
         end

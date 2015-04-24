@@ -1,9 +1,7 @@
 require 'sinatra/base'
-require "sinatra/cookies"
 
 class Chaplin
   class Server < Sinatra::Base
-    helpers Sinatra::Cookies
 
     def self.setup(project_path)
       set :public_folder, project_path + '/public'
