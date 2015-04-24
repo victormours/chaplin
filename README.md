@@ -20,8 +20,12 @@ Or added to an existing project's Gemfile
   gem 'chaplin'
 ```
 
-
 # Getting started:
+
+You can create a new project with
+```
+$ chaplin new my-app
+```
 
 Here is the basic structure of a Chaplin app:
 ```
