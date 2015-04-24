@@ -1,0 +1,21 @@
+layout: layout.html
+
+
+routes:
+  GET /: index.html
+  GET /about: about.html
+  GET /redirect_to_about: redirect go_to_about_page
+
+
+pages:
+
+  about.html:
+    repo: GET repos/victormours/chaplin
+
+
+redirects:
+
+  go_to_about_page:
+    path: /about
+    requests: {}
+
