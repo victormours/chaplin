@@ -2,8 +2,8 @@ Gem::Specification.new do |gem|
   gem.name        = 'chaplin'
   gem.version     = '0.0.0'
   gem.licenses    = ['MIT']
-  gem.summary     = "Mustache-powered application-size decorator for your JSON hypermedia api"
-  gem.description = "Chaplin(JSON hypermedia API, Mustache templates) == HTML web app"
+  gem.summary     = "Turn JSON APIs into HTML apps"
+  gem.description = "Chaplin maps JSON APIs to Mustache templates to quickly create HTML apps, without writing glue code."
   gem.authors     = ["Victor Mours"]
   gem.email       = 'victor.mours@gmail.com'
   gem.files       = Dir["lib/**/*.rb"]
