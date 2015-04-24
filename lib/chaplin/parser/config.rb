@@ -22,15 +22,27 @@ class Chaplin
       private
 
       def config
-        @config ||= JSON.load(json_config)
+        @config ||= load_yaml || load_json || {}
       end
 
-      def json_config
-        File.open(config_filename) rescue "{}"
+      def load_yaml
+        if File.exists?(yaml_filename)
+          YAML.load_file(yaml_filename)
+        end
       end
 
-      def config_filename
-        @config_filename ||= "#{project_path}/chaplin_config.json"
+      def yaml_filename
+        "#{project_path}/chaplin_config.yml"
+      end
+
+      def load_json
+        if File.exists?(json_filename)
+          JSON.load(File.open(json_filename))
+        end
+      end
+
+      def json_filename
+        "#{project_path}/chaplin_config.json"
       end
 
     end
