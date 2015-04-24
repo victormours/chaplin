@@ -1,10 +1,25 @@
 ![](https://api.travis-ci.org/victormours/chaplin.svg)
 
 # Chaplin
-## Turn JSON APIs into HTML apps without writing Javascript
+## Declaratively turn JSON APIs into HTML apps
 
-- Write HTML templates with Mustache tags in them
-- Declare mappings between templates and api endpoints in you `app.yml` file
+Chaplin maps HTML templates to API endpoints and renders them server-side.
+
+## It's great for
+- Quickly prototyping an app from an existing JSON API.
+- Quickly shipping an non-user facing app, like an admin interface to your main app for your sales team.
+
+# Installing
+
+Like any other Ruby gem, Chaplin can be installed with
+```
+$ gem install chaplin
+```
+Or added to an existing project's Gemfile
+```
+  gem 'chaplin'
+```
+
 
 # Getting started:
 
