@@ -1,15 +1,12 @@
 ![](https://api.travis-ci.org/victormours/chaplin.svg)
 
-Chaplin
----
-A templating server for building web apps on top a JSON api's.
-
+# Chaplin
+## Turn JSON APIs into HTML apps without writing Javascript
 
 - Write HTML templates with Mustache tags in them
 - Declare mappings between templates and api endpoints in you `app.yml` file
 
-Getting started:
----
+# Getting started:
 
 Here is the basic structure of a Chaplin app:
 ```
@@ -22,8 +19,7 @@ Here is the basic structure of a Chaplin app:
 You can start the server either with the `chaplin` command, or as a Rack application.
 
 
-Documentation:
----
+# Documentation:
 
 - [Relish docs](https://relishapp.com/victormours/chaplin/docs)
 
@@ -32,7 +28,7 @@ Documentation:
 - [chaplin-init](https://github.com/victormours/chaplin-init) is a starting point with some basic front end dev tooling (gulp, zurb foundation and such)
 
 
-Support
----
+# Support
 
 For troubleshooting or any questions about using Chaplin, hit me up on twitter [@VictorMours](https://twitter.com/VictorMours).
+
