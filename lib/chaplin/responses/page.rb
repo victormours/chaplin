@@ -19,8 +19,8 @@ class Chaplin
       private
 
       def rendered_data(request_params)
-        data.each_with_object({}) do |(key, value), rendered_data|
-          rendered_data[key] = value.render(request_params, sinatra_server)
+        data.each_with_object({}) do |(key, response), rendered_data|
+          rendered_data[key] = response.render(request_params)
         end
       end
     end

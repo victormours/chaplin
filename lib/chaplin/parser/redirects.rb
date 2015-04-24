@@ -12,9 +12,7 @@ class Chaplin
 
       def load
         redirect_declarations.each_with_object({}) do |(redirect_name, redirect_data), redirects_hash|
-          redirects_hash[redirect_name.to_s] = Responses::Redirect.new(redirect_data['path'],
-                                                                       api_requests(redirect_data['requests']),
-                                                                       redirect_data['cookies'] || {})
+          redirects_hash[redirect_name.to_s] = Responses::Redirect.new(redirect_data['path'], api_requests(redirect_data['requests']))
         end
       end
 
