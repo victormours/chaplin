@@ -5,9 +5,20 @@
 
 Chaplin maps HTML templates to API endpoints and renders them server-side.
 
-## It's great for
-- Quickly prototyping an app from an existing JSON API.
-- Quickly shipping an non-user facing app, like an admin interface to your main app for your sales team.
+It's great for:
+  - Quickly prototyping an app from an existing JSON API.
+  - Quickly shipping an non-user facing app, like an admin interface to your main app for your sales team.
+  - Writing an app only using HTML, Mustache and YAML.
+
+
+Here is the basic structure of a Chaplin app:
+```
+- public/             # all files in there are served statically
+- templates/          # HTML templates that will be rendered using Mustache
+- app.yml             # The YAML mapping between API endpoints and HTML templates
+- chaplin_config.yml  # The url of the API the server will connect to, and other configuration values
+```
+
 
 # Installing
 
@@ -27,14 +38,6 @@ You can create a new project with
 $ chaplin new my-app
 ```
 
-Here is the basic structure of a Chaplin app:
-```
-- public/
-- templates/
-- app.yml
-- chaplin_config.json
-```
-
 You can start the server either with the `chaplin` command, or as a Rack application.
 
 
@@ -45,7 +48,6 @@ You can start the server either with the `chaplin` command, or as a Rack applica
 - [chaplin-blog](https://github.com/victormours/chaplin-blog) is an example app with a Parse backend
 
 - [chaplin-init](https://github.com/victormours/chaplin-init) is a starting point with some basic front end dev tooling (gulp, zurb foundation and such)
-
 
 # Support
 
