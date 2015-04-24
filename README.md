@@ -1,7 +1,7 @@
 ![](https://api.travis-ci.org/victormours/chaplin.svg)
 
 # Chaplin
-## Declaratively turn JSON APIs into HTML apps
+## Build HTML apps from JSON APIs in no time
 
 Chaplin maps HTML templates to API endpoints and renders them server-side.
 
@@ -37,7 +37,6 @@ Here is the basic structure of a Chaplin app:
 - chaplin_config.yml  # The url of the API the server will connect to, and other configuration values
 ```
 
-
 You can start the server either with the `chaplin` command, or as a Rack application.
 
 
@@ -49,7 +48,10 @@ You can start the server either with the `chaplin` command, or as a Rack applica
 
 - [chaplin-init](https://github.com/victormours/chaplin-init) is a starting point with some basic front end dev tooling (gulp, zurb foundation and such)
 
+
 # Support
 
 For troubleshooting or any questions about using Chaplin, hit me up on twitter [@VictorMours](https://twitter.com/VictorMours).
+
+Chaplin is still in its early days, so I wouldn't recommend it for user-facing production apps just yet. We've been using it for an internal app for a couple month and it does the job.
 

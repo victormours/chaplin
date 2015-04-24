@@ -2,7 +2,7 @@ Gem::Specification.new do |gem|
   gem.name        = 'chaplin'
   gem.version     = '0.0.0'
   gem.licenses    = ['MIT']
-  gem.summary     = "Turn JSON APIs into HTML apps"
+  gem.summary     = "Build HTML apps from JSON APIs in no time"
   gem.description = "Chaplin maps JSON APIs to Mustache templates to quickly create HTML apps, without writing glue code."
   gem.authors     = ["Victor Mours"]
   gem.email       = 'victor.mours@gmail.com'
