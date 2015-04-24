@@ -14,8 +14,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "faraday"
   gem.add_runtime_dependency "mustache"
 
-  gem.add_runtime_dependency "pry"
-
+  gem.add_development_dependency "pry"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rack-test"
   gem.add_development_dependency "rspec"
