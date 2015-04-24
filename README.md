@@ -11,15 +11,6 @@ It's great for:
   - Writing an app only using HTML, Mustache and YAML.
 
 
-Here is the basic structure of a Chaplin app:
-```
-- public/             # all files in there are served statically
-- templates/          # HTML templates that will be rendered using Mustache
-- app.yml             # The YAML mapping between API endpoints and HTML templates
-- chaplin_config.yml  # The url of the API the server will connect to, and other configuration values
-```
-
-
 # Installing
 
 Like any other Ruby gem, Chaplin can be installed with
@@ -37,6 +28,15 @@ You can create a new project with
 ```
 $ chaplin new my-app
 ```
+
+Here is the basic structure of a Chaplin app:
+```
+- public/             # all files in there are served statically
+- templates/          # HTML templates that will be rendered using Mustache
+- app.yml             # The YAML mapping between API endpoints and HTML templates
+- chaplin_config.yml  # The url of the API the server will connect to, and other configuration values
+```
+
 
 You can start the server either with the `chaplin` command, or as a Rack application.
 
