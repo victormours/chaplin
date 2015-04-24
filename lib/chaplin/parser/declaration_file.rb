@@ -11,7 +11,7 @@ class Chaplin
       end
 
       def app_declaration
-        load_json || load_yaml
+        load_json || load_yaml || no_file_found
       end
 
       private
@@ -29,10 +29,7 @@ class Chaplin
       def load_yaml
         if File.exists?(yml_filename)
           YAML.load_file(yml_filename)
-        else
-          no_file_found
         end
-
       end
 
       def yml_filename

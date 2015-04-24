@@ -7,34 +7,48 @@ class Chaplin
   module Parser
 
     def self.routes(project_path)
-      @@project_path = project_path
-      pages = Pages.load(pages_declaration, project_path, layout_name)
-      redirects = Redirects.load(redirects_declaration)
-      router = Router.new(routes_json, pages, redirects)
-      router.load_routes
-      router.routes
+      parser.routes(project_path)
+    end
+
+    def self.parser
+      Object.new.extend(self)
+    end
+
+    def routes(project_path)
+      self.project_path = project_path
+      Router.new(routes_declaration, pages, redirects).routes
     end
 
     private
 
-    def self.pages_declaration
+    attr_accessor :project_path
+
+    def pages
+      Pages.load(pages_declaration, project_path, layout_name)
+    end
+
+    def redirects
+      Redirects.load(redirects_declaration)
+    end
+
+    def pages_declaration
       app_declaration['pages'] || []
     end
 
-    def self.redirects_declaration
+    def redirects_declaration
       app_declaration['redirects'] || {}
     end
 
-    def self.layout_name
+    def layout_name
       app_declaration['layout']
     end
 
-    def self.routes_json
+    def routes_declaration
       app_declaration['routes']
     end
 
-    def self.app_declaration
-      @@app_declaration ||= DeclarationFile.app_declaration(@@project_path)
+    def app_declaration
+      @app_declaration ||= DeclarationFile.app_declaration(project_path)
     end
 
   end

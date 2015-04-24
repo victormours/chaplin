@@ -1,3 +1,5 @@
+require 'childprocess'
+
 Given(/^I have the following API running$/) do |sinatra_api_code|
   `echo "require 'json'" > tmp/api.rb`
   `echo "require 'sinatra'" >> tmp/api.rb`
@@ -7,7 +9,7 @@ Given(/^I have the following API running$/) do |sinatra_api_code|
   # Uncomment the following line to see the server's output
   # @api_server.io.inherit!
   @api_server.start
-  sleep 1
+  sleep 3
 end
 
 

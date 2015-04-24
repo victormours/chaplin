@@ -11,23 +11,26 @@ class Chaplin
         @routes_declarations = routes_declarations
         @pages = pages
         @redirects = redirects
-        @routes = {}
       end
 
-      attr_accessor :routes
-
-      def load_routes
-        @routes_declarations.each do |endpoint, response|
-          if redirect?(response)
-            redirect_name = response.split(' ').last
-            @routes[build_endpoint(endpoint)] = @redirects[redirect_name]
-          else
-            @routes[build_endpoint(endpoint)] = @pages[response]
+      def routes
+        {}.tap do |routes|
+          @routes_declarations.each do |endpoint, response_name|
+            routes[build_endpoint(endpoint)] = response(response_name)
           end
         end
       end
 
       private
+
+      def response(response_name)
+        if redirect?(response_name)
+          redirect_name = response_name.split(' ').last
+          @redirects[redirect_name]
+        else
+          @pages[response_name]
+        end
+      end
 
       def redirect?(response)
         response.start_with?("redirect")

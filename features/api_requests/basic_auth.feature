@@ -11,6 +11,4 @@ Feature: Basic auth
       }
     }
     """
-    And I start a Chaplin server
-
 
