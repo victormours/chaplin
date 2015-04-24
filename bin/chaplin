@@ -2,7 +2,22 @@
 require "rack"
 require_relative '../lib/chaplin'
 
-project_directory = ARGV[0]
-chaplin_server = Chaplin.new(project_directory).server
+if ARGV[0].nil?
+  puts "usage:"
+  puts "$ chaplin my_chaplin_project_directory_name"
+  puts "or"
+  puts "$ chaplin new my_chaplin_project_directory_name"
+elsif ARGV[0] == 'new'
+  new_project_path = ARGV[1]
 
-Rack::Server.start(app: chaplin_server, Port: 8081)
+  FileUtils.mkdir(new_project_path)
+  FileUtils.cp_r("#{__dir__}/../sample_project/.", new_project_path)
+
+  puts "New chaplin project created in #{new_project_path}"
+  puts "Start the server with '$ chaplin #{new_project_path}'"
+else
+  project_directory = ARGV[0]
+  chaplin_server = Chaplin.new(project_directory).server
+
+  Rack::Server.start(app: chaplin_server, Port: 8081)
+end
