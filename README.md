@@ -21,7 +21,7 @@ You can start the server either with the `chaplin` command, or as a Rack applica
 
 # Documentation:
 
-- [Relish docs](https://relishapp.com/victormours/chaplin/docs)
+- [Reference](https://relishapp.com/victormours/chaplin/docs)
 
 - [chaplin-blog](https://github.com/victormours/chaplin-blog) is an example app with a Parse backend
 
