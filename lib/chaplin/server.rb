@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require "sinatra/cookies"
 
 class Chaplin
   class Server < Sinatra::Base
@@ -9,6 +10,7 @@ class Chaplin
 
     def self.add_route(endpoint, response)
       send(endpoint.http_method, endpoint.path) do
+        params = params.merge(cookies: cookies)
         response.execute(params, self)
       end
     end

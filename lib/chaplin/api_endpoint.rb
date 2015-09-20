@@ -22,19 +22,19 @@ class Chaplin
       @@default_headers = default_headers || {}
     end
 
-    def render(request_params)
-      response_body = api_response(request_params).body
+    def render(chaplin_request_params)
+      response_body = api_response(chaplin_request_params).body
       return nil if (response_body == 'null' or response_body == '')
       JSON.parse(response_body)
     end
 
     private
 
-    def api_response(request_params)
+    def api_response(chaplin_request_params)
       @@client.send(
         http_method,
-        parsed_path(request_params),
-        api_request_params(request_params),
+        parsed_path(chaplin_request_params),
+        api_request_params(chaplin_request_params),
         @@default_headers
       )
     end
@@ -55,14 +55,14 @@ class Chaplin
       @@default_headers.merge(headers)
     end
 
-    def rendered_params(request_params)
+    def rendered_params(chaplin_request_params)
       params.each_with_object({}) do |(key, value), rendered_params|
-        rendered_params[key] = Mustache.render(value, request_params)
+        rendered_params[key] = Mustache.render(value, chaplin_request_params)
       end
     end
 
-    def parsed_path(request_params)
-      Mustache.render(path, request_params)
+    def parsed_path(chaplin_request_params)
+      Mustache.render(path, chaplin_request_params)
     end
   end
 end
