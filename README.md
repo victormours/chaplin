@@ -1,6 +1,6 @@
 ![](https://api.travis-ci.org/victormours/chaplin.svg)
 
-![](assets/chaplin.svg)
+![](https://cdn.rawgit.com/LukyVj/chaplin/master/assets/chaplin.svg)
 ## Build HTML apps from JSON APIs in no time
 
 Chaplin maps HTML templates to API endpoints and renders them server-side.
