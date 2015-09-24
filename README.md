@@ -1,6 +1,6 @@
 ![](https://api.travis-ci.org/victormours/chaplin.svg)
 
-# Chaplin
+![](https://cdn.rawgit.com/LukyVj/chaplin/master/assets/chaplin.svg)
 ## Build HTML apps from JSON APIs in no time
 
 Chaplin maps HTML templates to API endpoints and renders them server-side.
@@ -54,4 +54,5 @@ You can start the server either with the `chaplin` command, or as a Rack applica
 For troubleshooting or any questions about using Chaplin, hit me up on twitter [@VictorMours](https://twitter.com/VictorMours).
 
 Chaplin is still in its early days, so I wouldn't recommend it for user-facing production apps just yet. We've been using it for an internal app for a couple month and it does the job.
+
 
