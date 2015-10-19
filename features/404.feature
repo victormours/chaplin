@@ -8,11 +8,11 @@ Feature: Page not found (404)
     404: not_found.html
     routes: {}
     """
-    And I have the following not_found.html file
+    And I have the following templates/not_found.html file
     """
     Page not found
     """
-    And I have the following layout.html file
+    And I have the following templates/layout.html file
     """
     Page layout
     {{{content}}}
@@ -23,5 +23,6 @@ Feature: Page not found (404)
     """
     Page layout
     Page not found
+
     """
 

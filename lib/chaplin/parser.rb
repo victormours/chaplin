@@ -19,12 +19,22 @@ class Chaplin
       Router.new(routes_declaration, pages, redirects).routes
     end
 
+    def self.not_found_response(project_path)
+      parser.not_found_response(project_path)
+    end
+
+    def not_found_response(project_path)
+      self.project_path = project_path
+      return unless DeclarationFile.new(project_path).not_found_page
+      pages[DeclarationFile.new(project_path).not_found_page]
+    end
+
     private
 
     attr_accessor :project_path
 
     def pages
-      Pages.load(pages_declaration, project_path, layout_name)
+      @pages ||= Pages.load(pages_declaration, project_path, layout_name)
     end
 
     def redirects

@@ -14,6 +14,10 @@ class Chaplin
         load_json || load_yaml || no_file_found
       end
 
+      def not_found_page
+        app_declaration[404]
+      end
+
       private
 
       def load_json
