@@ -1,5 +1,6 @@
 layout: layout.html
 
+404: 404.html
 
 routes:
   GET /: index.html
