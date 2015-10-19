@@ -14,6 +14,7 @@ class Chaplin
     ApiEndpoint.configure(@config.api_url, @config.default_headers, @config.basic_auth)
     Server.setup(@project_path)
     build_server
+    setup_404_page
     Server.new
   end
 
@@ -22,6 +23,16 @@ class Chaplin
   def build_server
     Parser.routes(@project_path).each do |endpoint, response|
       Server.add_route(endpoint, response)
+    end
+  end
+
+  def setup_404_page
+    not_found_page = Parser.not_found_response(@project_path)
+
+    return unless not_found_page
+
+    Server.not_found do
+      not_found_page.execute({}, Server)
     end
   end
 

@@ -18,4 +18,3 @@ Feature: Configuration
     """
     Then Chaplin connects to the api on port 1234
 
-
