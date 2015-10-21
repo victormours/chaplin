@@ -7,6 +7,11 @@ class Chaplin
 
     def self.setup(project_path)
       set :public_folder, project_path + '/public'
+      set :show_exceptions, false
+
+      error do
+        env['sinatra.error'].message + "\n" + env['sinatra.error'].backtrace.join("\n")
+      end
     end
 
     def self.add_route(endpoint, response)
