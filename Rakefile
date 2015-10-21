@@ -12,3 +12,6 @@ task :build do
   `gem build chaplin.gemspec`
 end
 
+task :publish do
+  `gem push chaplin-*.gem`
+end
