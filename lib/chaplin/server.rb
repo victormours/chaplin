@@ -7,6 +7,8 @@ class Chaplin
 
     def self.setup(project_path)
       set :public_folder, project_path + '/public'
+      set :static_cache_control, [:public, :max_age => 300]
+
       set :show_exceptions, false
 
       error do
