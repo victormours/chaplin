@@ -42,7 +42,7 @@ class Chaplin
 
     def api_request_params(full_params)
       if json_request? && [:post, :put, :patch].include?(http_method)
-        Mustache.render(params.to_json, full_params)
+        json_rendered_params(full_params)
       else
         rendered_params(full_params)
       end
@@ -54,6 +54,12 @@ class Chaplin
 
     def request_headers
       @@default_headers.merge(headers)
+    end
+
+    def json_rendered_params(full_params)
+      params.each_with_object({}) do |(key, value), rendered_params|
+        rendered_params[key] = JSON.parse(Mustache.render(value, full_params))
+      end.to_json
     end
 
     def rendered_params(full_params)
