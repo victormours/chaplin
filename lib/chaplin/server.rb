@@ -18,8 +18,8 @@ class Chaplin
 
     def self.add_route(endpoint, response)
       send(endpoint.http_method, endpoint.path) do
-        params_with_cookies = (params || {}).merge(cookies: cookies)
-        response.execute(params_with_cookies, self)
+        params_with_cookies_and_session = (params || {}).merge(cookies: cookies, session: session)
+        response.execute(params_with_cookies_and_session, self)
       end
     end
   end
