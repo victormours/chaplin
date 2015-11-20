@@ -12,4 +12,8 @@ Feature: Cookies
         - {}
         - Authorization: 'Bearer {{cookies.token}}'
   """
+  The same thing works for Rack sessions with the "session" variable.
+  """
+  Hello {{ params.session.name }}
+  """
 
