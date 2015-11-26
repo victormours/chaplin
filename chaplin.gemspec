@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = 'chaplin'
-  gem.version     = '0.0.2'
+  gem.version     = '0.0.3'
   gem.licenses    = ['MIT']
   gem.summary     = "Build HTML apps from JSON APIs in no time"
   gem.description = "Chaplin maps JSON APIs to Mustache templates to quickly create HTML apps, without writing glue code."

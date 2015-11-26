@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chaplin (0.0.2)
+    chaplin (0.0.3)
       faraday
       mustache
       rack
@@ -13,7 +13,7 @@ GEM
   specs:
     addressable (2.3.6)
     archive-tar-minitar (0.5.2)
-    backports (3.6.6)
+    backports (3.6.7)
     builder (3.2.2)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
