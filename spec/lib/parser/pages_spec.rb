@@ -42,7 +42,7 @@ module Chaplin::Parser
             },
             "article.html" => {
               "article" => "GET classes/articles/{{id}}",
-              "comments" => "comments.html"
+              "comments" => "render comments.html"
             }
           }
         end

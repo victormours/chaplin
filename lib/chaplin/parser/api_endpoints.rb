@@ -6,6 +6,11 @@ class Chaplin
 
     class ApiEndpoints
 
+      def self.valid?(raw_data_value)
+        http_verbs = ['get ', 'post ', 'put ', 'head ', 'delete ']
+        [raw_data_value].flatten.first.downcase.start_with?(*http_verbs)
+      end
+
       def self.build(api_endpoint_declaration)
         new(api_endpoint_declaration).build
       end

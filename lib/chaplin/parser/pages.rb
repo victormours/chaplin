@@ -1,4 +1,5 @@
 require_relative '../responses/page'
+require_relative '../inline_partial'
 require_relative 'api_endpoints'
 
 class Chaplin
@@ -60,14 +61,21 @@ class Chaplin
 
       def build_data(raw_data_value)
         if partial?(raw_data_value)
-          @pages[raw_data_value]
-        else
+          partial_name = raw_data_value.split(" ").last
+          @pages[partial_name]
+        elsif endpoint?(raw_data_value)
           ApiEndpoints.build(raw_data_value)
+        else
+          InlinePartial.new(raw_data_value)
         end
       end
 
       def partial?(raw_data_value)
-        raw_data_value.is_a?(String) && !raw_data_value.include?(' ')
+        raw_data_value.is_a?(String) && raw_data_value.downcase.start_with?("render")
+      end
+
+      def endpoint?(raw_data_value)
+        ApiEndpoints.valid?(raw_data_value)
       end
 
     end
