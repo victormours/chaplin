@@ -6,13 +6,10 @@ Feature: Using request parameters in templates
     """
     My name is {{params.firstname}}.
     """
-    And I have the following routes.json file
+    And I have the following app.yml file
     """
-    {
-      "routes": {
-        "GET /name": "name.html"
-      }
-    }
+    routes:
+      GET /name: name.html
     """
     And I start a Chaplin server
     When I send the request GET /name?firstname=Bob
