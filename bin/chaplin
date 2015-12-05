@@ -10,6 +10,9 @@ if ARGV[0].nil?
 elsif ARGV[0] == 'new'
   new_project_path = ARGV[1]
   Chaplin::New.(new_project_path)
+
+  puts "New chaplin project created in #{new_project_path}"
+  puts "Start the server with 'chaplin #{new_project_path}'"
 else
   project_directory = ARGV[0]
   chaplin_server = Chaplin.new(project_directory).server
