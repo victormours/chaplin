@@ -3,6 +3,8 @@ require_relative 'chaplin/parser/config'
 require_relative 'chaplin/server'
 require_relative 'chaplin/api_endpoint'
 
+require_relative 'chaplin/new'
+
 class Chaplin
 
   def initialize(project_path)
