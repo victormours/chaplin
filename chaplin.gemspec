@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.description = "Chaplin maps JSON APIs to Mustache templates to quickly create HTML apps, without writing glue code."
   gem.authors     = ["Victor Mours"]
   gem.email       = 'victor.mours@gmail.com'
-  gem.files       = Dir["lib/**/*.rb"]
+  gem.files       = Dir["lib/**/*.rb"] + Dir["sample_project/**/*"]
   gem.executables = ['chaplin']
 
   gem.add_runtime_dependency "rack"
