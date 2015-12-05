@@ -8,10 +8,8 @@ task :relish do
   system("bundle exec relish push victormours/chaplin")
 end
 
-task :build do
-  `gem build chaplin.gemspec`
-end
-
 task :publish do
+  `gem build chaplin.gemspec`
   `gem push chaplin-*.gem`
+  `rm chaplin-*.gem`
 end
