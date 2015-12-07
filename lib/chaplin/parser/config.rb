@@ -8,7 +8,7 @@ class Chaplin
       DEFAULT_API_URL = "http://localhost:8080"
 
       def api_url
-        config['api_url'] || DEFAULT_API_URL
+        Mustache.render(raw_api_url, env: ENV)
       end
 
       def default_headers
@@ -20,6 +20,10 @@ class Chaplin
       end
 
       private
+
+      def raw_api_url
+        config['api_url'] || DEFAULT_API_URL
+      end
 
       def config
         DeclarationFile.app_declaration(project_path)
