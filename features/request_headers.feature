@@ -5,7 +5,7 @@ Feature: Request headers
     """
     The content-type you're requesting to the distant API is {{headers.requested_content_type}}.
     """
-    And I have the following routes.json file
+    And I have the following app.json file
     """
     {
       "routes": {
@@ -15,12 +15,8 @@ Feature: Request headers
       "pages": {
         "header_echo.html": { "headers":  ["GET /headers"] }
 
-      }
-    }
-    """
-    And I have the following chaplin_config.json file
-    """
-    {
+      },
+
       "api_url": "http://localhost:8080",
       "headers": { "Content-Type": "application/json" }
     }

@@ -1,8 +1,8 @@
 Feature: Embedding templates in layout
-  Templates can be embedded in a layout specified in the routes.json
+  Templates can be embedded in a layout specified in the app.json
 
   Scenario: Embedding a template in a layout
-    Given I have the following routes.json file
+    Given I have the following app.json file
     """
     {
       "layout": "layout.html",

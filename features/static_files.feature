@@ -6,7 +6,7 @@ Feature: Serving static files
     """
     Hello Chaplin!
     """
-    And I have the following routes.json file
+    And I have the following app.json file
     """
     {
       "routes": []

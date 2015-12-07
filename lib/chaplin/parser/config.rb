@@ -16,33 +16,13 @@ class Chaplin
       end
 
       def basic_auth
-        config['basic_auth']
+        config['api_basic_auth']
       end
 
       private
 
       def config
-        @config ||= load_yaml || load_json || {}
-      end
-
-      def load_yaml
-        if File.exists?(yaml_filename)
-          YAML.load_file(yaml_filename)
-        end
-      end
-
-      def yaml_filename
-        "#{project_path}/chaplin_config.yml"
-      end
-
-      def load_json
-        if File.exists?(json_filename)
-          JSON.load(File.open(json_filename))
-        end
-      end
-
-      def json_filename
-        "#{project_path}/chaplin_config.json"
+        DeclarationFile.app_declaration(project_path)
       end
 
     end

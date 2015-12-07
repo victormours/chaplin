@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chaplin (0.0.3)
+    chaplin (0.0.5)
       faraday
       mustache
       rack

@@ -22,7 +22,7 @@ Feature:  Parameters for api requests
     """
 
   Scenario: Forwarding static parameters
-    Given I have the following routes.json file
+    Given I have the following app.json file
     """
     {
       "routes": {
@@ -42,7 +42,7 @@ Feature:  Parameters for api requests
     """
 
   Scenario: Using dynamic parameters
-    And I have the following routes.json file
+    And I have the following app.json file
     """
     {
       "routes": {

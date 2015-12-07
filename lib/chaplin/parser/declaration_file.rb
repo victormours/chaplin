@@ -27,7 +27,7 @@ class Chaplin
       end
 
       def json_filename
-        project_path + "/routes.json"
+        project_path + "/app.json"
       end
 
       def load_yaml

@@ -6,7 +6,7 @@ Feature: Dynamic routes
     """
     My name is {{params.firstname}}.
     """
-    And I have the following routes.json file
+    And I have the following app.json file
     """
     {
       "routes": {
