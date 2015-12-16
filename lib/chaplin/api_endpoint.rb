@@ -58,7 +58,8 @@ class Chaplin
 
     def json_rendered_params(full_params)
       params.each_with_object({}) do |(key, value), rendered_params|
-        rendered_params[key] = JSON.parse(Mustache.render(value, full_params))
+        rendered_value = Mustache.render(value, full_params)
+        rendered_params[key] = JSON.parse(rendered_value) rescue rendered_value
       end.to_json
     end
 
