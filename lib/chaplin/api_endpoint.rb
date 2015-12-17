@@ -36,7 +36,7 @@ class Chaplin
         http_method,
         parsed_path(full_params),
         api_request_params(full_params),
-        @@default_headers
+        Mustache.render(@@default_headers, full_params)
       )
     end
 

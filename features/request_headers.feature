@@ -1,25 +1,25 @@
 Feature: Request headers
+  You can use mustache to render params, cookies and sessions in request headers.
+
 
   Scenario: Setting headers for all requests to an API
     Given I have the following templates/header_echo.html file
     """
     The content-type you're requesting to the distant API is {{headers.requested_content_type}}.
     """
-    And I have the following app.json file
+    And I have the following app.yml file
     """
-    {
-      "routes": {
-        "GET /header": "header_echo.html"
-      },
+    routes:
+      GET /header: "header_echo.html"
 
-      "pages": {
-        "header_echo.html": { "headers":  ["GET /headers"] }
+    pages:
+      header_echo.html:
+        headers:
+          - "GET /headers"
 
-      },
-
-      "api_url": "http://localhost:8080",
-      "headers": { "Content-Type": "application/json" }
-    }
+    api_url: "http://localhost:8080"
+    headers:
+      Content-Type: "application/json"
     """
     Given I have the following API running
     """
