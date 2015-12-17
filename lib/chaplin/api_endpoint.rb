@@ -36,8 +36,14 @@ class Chaplin
         http_method,
         parsed_path(full_params),
         api_request_params(full_params),
-        Mustache.render(@@default_headers, full_params)
+        rendered_headers(full_params)
       )
+    end
+
+    def rendered_headers(full_params)
+      @@default_headers.each_with_object({}) do |(key, value), rendered_headers|
+        rendered_headers[key] = Mustache.render(value, full_params)
+      end
     end
 
     def api_request_params(full_params)
