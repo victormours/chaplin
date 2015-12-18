@@ -55,7 +55,7 @@ class Chaplin
 
       def data_hash(raw_data_hash)
         raw_data_hash.each_with_object({}) do |(key, raw_data_value), data_hash|
-          data_hash[key] = build_data(raw_data_value)
+          data_hash[key.to_sym] = build_data(raw_data_value)
         end
       end
 

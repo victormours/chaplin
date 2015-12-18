@@ -29,18 +29,16 @@ class Chaplin
           end
 
           def method_missing(method_name)
-            data[method_name].render(request_params)
+            if respond_to?(method_name)
+              data[method_name].render(request_params)
+            end
           end
 
         end.new(request_params, data)
       end
 
-      def rendered_data(request_params)
-        data.each_with_object({}) do |(key, response), rendered_data|
-          rendered_data[key] = response.render(request_params)
-        end
-      end
     end
   end
 end
+
 
