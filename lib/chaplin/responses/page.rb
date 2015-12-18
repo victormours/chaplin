@@ -19,21 +19,20 @@ class Chaplin
       private
 
       def response_data(request_params)
-        response_class = Struct.new(:request_params, :data)
-
-        data.each do |key,value|
-          response_class.send(:define_method, key.to_sym) do
-            data[key].render(request_params)
+        Struct.new(:request_params, :data) do
+          def params
+            request_params
           end
-        end
 
-        response = response_class.new(request_params, data)
+          def respond_to?(method, include_private = false)
+            super || data.keys.include?(method)
+          end
 
-        def response.params
-          request_params
-        end
+          def method_missing(method_name)
+            data[method_name].render(request_params)
+          end
 
-        response
+        end.new(request_params, data)
       end
 
       def rendered_data(request_params)
